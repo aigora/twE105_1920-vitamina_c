@@ -1,13 +1,19 @@
-# Título del trabajo
+# Vitamina C
 
-Descripción breve del proyecto a realizar (2-3 frases).
+El proyecto consiste en un programa escrito en C que encripte unos archivos determinados mediante el uso de un usuario y contraseña, para después enviarlos posteriormente con un Arduino a otro conectado a un segundo ordenador.
 
 ## Integrantes del equipo
 
 Nombres, apellidos, y usuario GitHub de los integrantes del equipo.
+
 Adrián Gómez García (Adriang2211)
+Pedro León Espino (PedroLeon00)
 
 
 ## Objetivos del trabajo
 
-Lista de los objetivos que se persiguen con el trabajo propuesto.
+Con este trabajo intentaremos:
+  - Abarcar métodos de encriptación con el conocimiento de punteros y archivos explicados en clase.
+  - Profundizar de manera extracurricular en la utilización de arduino y su uso en el envío de datos.
+  - Fomentar el trabajo coperativo y el reparto de tareas.
+  
