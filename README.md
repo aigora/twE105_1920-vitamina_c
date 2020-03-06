@@ -9,6 +9,7 @@ Nombres, apellidos, y usuario GitHub de los integrantes del equipo.
 Adrián Gómez García (Adriang2211)
 Pedro León Espino (PedroLeon00)
 Emanuel Filip (Emanuel151100)
+Jorge Barahona Monte (JorgeBarahonaMonte)
 
 
 ## Objetivos del trabajo
