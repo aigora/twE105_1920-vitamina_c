@@ -19,16 +19,16 @@ int main (){
 		    X[i]=0;
 	    }else{
 		    X[i]=1;
+		}
 	if(Y[i]%2==0){
 		    Y[i]=0;
 	    }else{
 		    Y[i]=1;
-				    
-	if(Z[i]%2==0){
+	}if(Z[i]%2==0){
 		    Z[i]=0;
 	    }else{
 		    Z[i]=1;
-	
+	}
 	    i++;
     }
     printf("\n");
@@ -72,5 +72,5 @@ int main (){
 	iter++;
 	}
 
-
 }
+
