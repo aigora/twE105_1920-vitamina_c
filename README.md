@@ -15,5 +15,5 @@ El proyecto consiste en un programa escrito en C que encripte unos archivos dete
 Con este trabajo intentaremos:
   - Abarcar métodos de encriptación con el conocimiento de punteros y archivos explicados en clase.
   - Profundizar de manera extracurricular en la utilización de arduino y su uso en el envío de datos.
-  - Fomentar el trabajo coperativo y el reparto de tareas.
+  - Fomentar el trabajo cooperativo y el reparto de tareas.
   
