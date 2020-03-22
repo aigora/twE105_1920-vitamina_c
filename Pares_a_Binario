@@ -32,5 +32,6 @@ int ASCII_a_01((int X[11],int Y[11],int Z[11]))
 	 }
   }
   i++;
+  return X[11],Y[11],Z[11];
 }
 
