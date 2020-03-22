@@ -1,4 +1,4 @@
-#include <stdio.h>
+//Pares a binario
 int ASCII_a_01(int UDC[11]);
 int ASCII_a_01(int UDC[11])
 {
