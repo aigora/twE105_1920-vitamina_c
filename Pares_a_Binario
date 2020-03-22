@@ -1,0 +1,19 @@
+#include <stdio.h>
+int ASCII_a_01(int UDC[11]);
+int ASCII_a_01(int UDC[11])
+{
+  int i;
+  i=0;
+  while(i<=11)
+  {
+  	 if(UDC[i]%2=0)
+  	 {
+  	 	UDC[i]=0;
+	 }
+	 else
+	 {
+	 	UDC[i]=1;
+	 }
+  }
+  i++;
+}
