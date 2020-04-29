@@ -1,6 +1,8 @@
 #include <stdio.h>
 void main ()
 {
+	Datos Uyc;
+	pedirDatos(Uyc);
 	int x;
 	//El programa se ejecuta indefinidamente hasta que el usuario decide salir
 	_Bool continuar = 0;
