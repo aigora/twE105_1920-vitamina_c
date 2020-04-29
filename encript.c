@@ -74,3 +74,39 @@ int main (){
 
 }
 
+//una vez pasemos por todas las iteraciones tendremos tres cadenas UDC en binario,
+//vamos a reunir los parámetros y pasarlos de binario a decimal
+
+i=0;x=0;y=0;z=0;
+j=pow(10,12);
+while(i<12){
+	x=x*2+X[i];
+	y=y*2+Y[i];
+	z=z*2+Z[i];
+	i++;
+}
+ //una vez hecho vamos a abrir el archivo, esta parte tenemos que tratarla todavía
+FILE *txt;
+
+int *txtASCII;
+ txt=fopen ("encript.txt", "r"); //abrir archivo
+char p;
+i=0;
+ while (!fscanf(txt, &p) == EOF){
+ 	i++;
+ }
+ cont=i;
+ txtASCII=malloc(sizeof(int)*cont); 	//malloc, punteros
+ if (txtASCII==NULL){
+ 	printf("ERROR");
+ 	exit(-1);
+ }
+ i=0;
+  while (!fscanf(txt, &p) == EOF){
+  	txtASCII=p;
+ 	i++;
+ }
+ fclose(txt);
+ 
+
+
