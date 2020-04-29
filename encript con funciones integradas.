@@ -5,6 +5,7 @@ int Char_a_ASCII(char pswrd[12] );
 void UDC (int pswrdASCII[11]);
 int ASCII_a_01(int X[11],int Y[11],int Z[11]);
 int Func_Desplz(int X[11],int Y[11],int Z[11],int T[11]);
+unsigned long int binarioADecimal(int *p, int longitud);
 
 
 int main ()
@@ -164,5 +165,22 @@ int Func_Desplz(int X[11],int Y[11],int Z[11],int T[11])
 			i++;	
 		}
 		i=0;
+		
+		
+}
+unsigned long int binarioADecimal(int *p, int longitud)
+{
+  unsigned long long decimal = 0;
+  int multiplicador = 1,i,numeroActual;
+  for ( i = longitud-1; i >= 0; i--) 
+  {
+    numeroActual = *(p+i);
+    if (numeroActual ==1) 
+	{
+      decimal+= multiplicador;
+    }
+    multiplicador = multiplicador * 2;
+  }
+  return decimal;
 }
 //
