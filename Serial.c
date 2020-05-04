@@ -1,10 +1,11 @@
-/* Programa que establece conexión con la placa Arduino.
- * 30 de abril de 2020
+/* Programa que establece conexión con la placa Arduino - 4 de mayo de 2020
  *
- * Esta versión todavía no tiene funciones para el envío y recepción de datos
+ * Esta versión todavía no puede recibir mensajes
+ * Se utiliza un main a modo prueba, pero en la versión definitiva esa parte del código tendrá que estar incluida en otras funciones
+ * Este archivo deberá incluirse en el proyecto en forma de librería
  *
  * Hay un error con la condición de la línea 84. Solo funciona si se añade un carácter a continuación de "salir".
- *
+ * 
  * Hay una opción para establecer la conexión con una búsqueda automática en todos los puertos
  * y otra opción para introducir manualmente la dirección, ya que si hay dos placas Arduino conectadas
  * la búsqueda automática conectará con el puerto con el número más bajo, que puede no ser el deseado.
@@ -15,6 +16,7 @@
 #include <Windows.h>
 #include <string.h>
 #define MAX_NO_PUERTOS_COM 10
+#define TAM_BUFFER 110
 
 typedef struct
 {
@@ -24,8 +26,10 @@ typedef struct
 } Serial;
 
 _Bool Serial_begin (Serial *link, char *COM_number);
+_Bool Serial_write (Serial *link, char *mensaje);
+void Serial_end (Serial *link);
 
-main (){
+main (){ //Hay que convertirlo en una función, que puede incluirse en esta parte del programa o en otra
 	Serial puertoserie;
 	_Bool hay_conexion = 0; //Para dejar de buscar puertos una vez se establece conexión
 	_Bool salir = 0;
@@ -137,6 +141,20 @@ _Bool Serial_begin (Serial *link, char *COM_number){
 		}
 	}
 }
+
+void Serial_end(Serial *link){ //Finaliza la conexión de un puerto abierto. Debe ejecutarse cuando se elija salir del programa.
+	CloseHandle (link->handler);
+    printf ("Conexion con Arduino finalizada.\n");
+}
+
+_Bool Serial_write (Serial *link, char *mensaje){
+	if (!WriteFile(link->handler, (void*) mensaje, TAM_BUFFER, 0, 0)){
+		printf ("Error enviando el mensaje.\nDebe reiniciarse la transmision del mensaje.\n");
+		return 0;
+	}
+	return 1;
+}
+
 //AQUÍ FUNCIONES PARA EL ENVÍO Y RECEPCIÓN DE MENSAJES.
 
 //Para escribir este programa, se ha consultado cómo realizar la conexión con la placa Arduino por el puerto
