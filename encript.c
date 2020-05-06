@@ -76,7 +76,7 @@ int main (){
 
 //una vez pasemos por todas las iteraciones tendremos tres cadenas UDC en binario,
 //vamos a reunir los parámetros y pasarlos de binario a decimal
-
+//FUNCION PASAR DE BINARIO A DECIMAL
 i=0;x=0;y=0;z=0;
 j=pow(10,12);
 while(i<12){
@@ -103,10 +103,7 @@ i=0;
  }
  i=0;
   while (!fscanf(txt, &p) == EOF){
-  	txtASCII=p;
+  	*txtASCII= &p;
  	i++;
  }
  fclose(txt);
- 
-
-
