@@ -3,10 +3,10 @@ int main (){
 	int pswrdASCII[11], X[11], Y[11], Z[11],T[11], comodin2[11], comodin3[11], comodin4[11];
 	int iter=0, i=0;
 	char pswrd[12]; //creo un arrai de 13 numeros
-	scanf("%12s", pswrd);//tomo la contraseña
+	scanf("%12s", pswrd);//tomo la contraseÃ±a
 	printf("password: %s \n", pswrd); //en un futuro metermos un bucle por si el usuario ha cometido un error
 	while (i<12){
-	    pswrdASCII[i]= pswrd[i]; //creamos una nueva cadena con los caracteres de la contraseña en ASCII
+	    pswrdASCII[i]= pswrd[i]; //creamos una nueva cadena con los caracteres de la contraseÃ±a en ASCII
 	    	printf("%d \t", pswrdASCII[i]);// hay q revisar el bug del pswrd[9]=1 para valor null
 		//guardamos en tres nuevos arrais las cifras de las unidades (Z), decenas(X) y centenas(Y) de los numeros ASCII de cada caracter
 		Z[i]= pswrdASCII[i]%10;
@@ -75,7 +75,7 @@ int main (){
 }
 
 //una vez pasemos por todas las iteraciones tendremos tres cadenas UDC en binario,
-//vamos a reunir los par�metros y pasarlos de binario a decimal
+//vamos a reunir los parámetros y pasarlos de binario a decimal
 //FUNCION PASAR DE BINARIO A DECIMAL
 i=0;x=0;y=0;z=0;
 j=pow(10,12);
@@ -85,7 +85,7 @@ while(i<12){
 	z=z*2+Z[i];
 	i++;
 }
- //una vez hecho vamos a abrir el archivo, esta parte tenemos que tratarla todav�a
+ //una vez hecho vamos a abrir el archivo, esta parte tenemos que tratarla todavía
 FILE *txt;
 
 int *txtASCII;
@@ -103,7 +103,7 @@ i=0;
  }
  i=0;
   while (!fscanf(txt, &p) == EOF){
-  	*txtASCII= &p;
- 	i++;
+  	*txtASCII= &p; //Si buscas asignar cada valor leido en char a ASCII->*(txtASCII+i)=p
+ 	i++;           //si has visto una mejor manera para hacerlo evita mi comentario.
  }
  fclose(txt);
