@@ -1,9 +1,9 @@
 //Funcion desplazamiento
-int Func_Desplz(int X[11],int Y[11],int Z[11]; int T[11]);
-int Func_Desplz(int X[11],int Y[11],int Z[11]; int T[11])//añado int T[11],
+int Func_Desplz(int X[11],int Y[11],int Z[11],int T[11]);
+int Func_Desplz(int X[11],int Y[11],int Z[11],int T[11])
 {
 	int comodin2[11], comodin3[11], comodin4[11];
-	i=0;
+	int i=0;
 		while (i<=11)
 		{ 
 			comodin2[i]=Y[i];	
@@ -15,6 +15,5 @@ int Func_Desplz(int X[11],int Y[11],int Z[11]; int T[11])//añado int T[11],
 			X[i]=comodin4[i];
 			i++;	
 		}
-		i=0;
-	
+	return 0;
 }
