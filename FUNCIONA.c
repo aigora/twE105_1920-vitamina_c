@@ -87,13 +87,9 @@ int *txtASCII;
  	{
    	printf("Error");
    	return(-1);
-	}                            //abrir archivo
- while (fscanf(txt,"%c" ,&p) != EOF){
- 	i++;
-    printf("%c",p);
-}
-cont=i;
-txtASCII=malloc(sizeof(int)*cont);
+	}                     
+
+txtASCII=malloc(sizeof(txt));
 if (txtASCII==NULL){
  	printf("Error en asignacion malloc");
  	exit(-1);
@@ -103,13 +99,13 @@ if (txtASCII==NULL){
 	{
 		printf("Error txt2");
 	}
-	printf("procediendo a leer por segunda vez");
-  while (fscanf(txt,"%c",&p) != EOF){
+	printf("procediendo a leer por segunda vez");//Rewind
+  while ((p=fgetc(txt))!=EOF){
+  	printf("pq no funcionas");
   	if(j==12)
   	j=0;
-  	printf("pq no funcionas");
   	*(txtASCII+i)=p;
-	*(txtASCII+i)+=pswrdASCII[i];
+	*(txtASCII+i)+=pswrdASCII[j];
 	while(*(txtASCII+i)>255){                                 //Lo que estamos haciendo es acotar el numero obtenido para que sea positivo y [0,255]
 	*(txtASCII+i)-=255;
 	}
@@ -117,6 +113,7 @@ if (txtASCII==NULL){
 	i++;                                   
 	j++;                                  
 	}
+	printf("hola");
  fclose(txt2);
  fclose(txt);
  free(txtASCII);
