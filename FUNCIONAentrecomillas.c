@@ -83,31 +83,42 @@ FILE *txt,*txt2;
 
 int *txtASCII;
  txt=fopen ("encript.txt", "r");
-  printf("hola");                               //abrir archivo
- while (!fscanf(txt, &p) == EOF)
-{
+ if(txt==NULL)
+ 	{
+   	printf("Error");
+   	return(-1);
+	}                            //abrir archivo
+ while (fscanf(txt,"%c" ,&p) != EOF){
  	i++;
+    printf("%c",p);
 }
 cont=i;
-txtASCII=malloc(sizeof(int)*cont); 	//malloc, punteros
+txtASCII=malloc(sizeof(int)*cont);
 if (txtASCII==NULL){
- 	printf("ERROR");
+ 	printf("Error en asignacion malloc");
  	exit(-1);
  }
-  while (!fscanf(txt, &p) == EOF)
-{
+ 	txt2=fopen("encript2.txt","w");
+	if(txt2==NULL)
+	{
+		printf("Error txt2");
+	}
+	printf("procediendo a leer por segunda vez");
+  while (fscanf(txt,"%c",&p) != EOF){
   	if(j==12)
   	j=0;
+  	printf("pq no funcionas");
   	*(txtASCII+i)=p;
 	*(txtASCII+i)+=pswrdASCII[i];
-	while(*(txtASCII+i)>255)
-{                                 //Lo que estamos haciendo es acotar el numero obtenido para que sea positivo y [0,255]
+	while(*(txtASCII+i)>255){                                 //Lo que estamos haciendo es acotar el numero obtenido para que sea positivo y [0,255]
 	*(txtASCII+i)-=255;
-}
-	txt2=fopen("encript2.txt","w");	
-	 fprintf(txt2,"%c",*(txtASCII+i));//Se puede asignar char a ascii                                //se imprime el valor entero como char
-}
+	}
+	 	fprintf(txt2,"%c",*(txtASCII+i));  //Se puede asignar char a ascii //se imprime el valor entero como char
+	i++;                                   
+	j++;                                  
+	}
  fclose(txt2);
  fclose(txt);
+ free(txtASCII);
  return 0;
 }
