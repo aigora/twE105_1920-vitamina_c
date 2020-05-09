@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<stdlib.h>
 int main (){
 	int pswrdASCII[11], X[11], Y[11], Z[11],T[11],U,D,C,comodin2[11], comodin3[11], comodin4[11];
 	int iter=0,j=0,i=0,x=0,y=0,z=0,cont;
