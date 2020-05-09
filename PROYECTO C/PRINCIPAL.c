@@ -1,24 +1,24 @@
 #include <stdio.h>
 #include "Funciones.h"
-
+#include <stdlib.h>
 int main (){
 	int pswrdASCII[11], X[11], Y[11], Z[11],T[11],U,D,C,comodin2[11], comodin3[11], comodin4[11];
 	int iter=0,j=0,i=0,x=0,y=0,z=0,cont;
 	char pswrd[12],p;
 	
-	fpswrd (pswrd); //FUNCIÓN (Contraseña).
+	fpswrd (pswrd); //FUNCIÃ“N (ContraseÃ±a).
    			  
 	while (i<12)
 	{
-	    Char_a_ASCII(pswrd,pswrdASCII); //FUNCIÓN (Pasar la contraseña de caracteres a ASCII)
+	    Char_a_ASCII(pswrd,pswrdASCII); //FUNCIÃ“N (Pasar la contraseÃ±a de caracteres a ASCII)
 	        printf("%d \t", pswrdASCII[i]);	
 	    
-		UDC (pswrdASCII, X, Y, Z); //FUNCIÓN (Pasamos ASCII a unidades,decenas y centenas)
+		UDC (pswrdASCII, X, Y, Z); //FUNCIÃ“N (Pasamos ASCII a unidades,decenas y centenas)
 			printf("%d, %d, %d \t", X[i],Y[i],Z[i]);
 	i++;
     }
 	
-	ASCII_a_01(X,Y,Z);//FUNCIÓN (X Y Z a binario)
+	ASCII_a_01(X,Y,Z);//FUNCIÃ“N (X Y Z a binario)
 	printf("\n");
 
 
@@ -76,7 +76,7 @@ int main (){
 		i++;
 	}
 
- //una vez hecho vamos a abrir el archivo, esta parte tenemos que tratarla todavÃ­a
+ //una vez hecho vamos a abrir el archivo, esta parte tenemos que tratarla todavÃƒÂ­a
 	FILE *txt,*txt2;
 
 	int *txtASCII;
