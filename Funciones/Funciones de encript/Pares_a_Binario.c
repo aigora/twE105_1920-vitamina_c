@@ -1,5 +1,5 @@
 //Pares a binario
-int ASCII_a_01(int X[],int n,int Y[],int c,int Z[],int b);
+int ASCII_a_01(int X[11],int Y[11],int Z[11]);
 {
   int i=0;
     while(i<12)
