@@ -1,6 +1,6 @@
-char pswrd (char pswrd[12]);
-char pswrd (char pswrd[12])
+char pswrd (char pswrd[],int n);
+char pswrd (char pswrd[],int n)
 {
-	scanf("%12s", pswrd);
+	gets(pswrd);
 		printf("password: %s \n", pswrd);
 }
