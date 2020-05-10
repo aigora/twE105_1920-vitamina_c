@@ -1,6 +1,6 @@
 //2.	Pasa caracteres a ASCII
-int Char_a_ASCII(char pswrd[12], int ASCII[11]);
-int Char_a_ASCII(char pswrd[12], int ASCII[11])
+int Char_a_ASCII(char pswrd[],int n , int ASCII[],int b);
+int Char_a_ASCII(char pswrd[],int n, int ASCII[],int b)
 {
 	int i=0;
 	while(i<12)
