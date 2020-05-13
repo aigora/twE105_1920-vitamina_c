@@ -1,6 +1,6 @@
 [Project]
-FileName=VITAMINA C.dev
-Name=Proyecto4
+FileName=ENCRIPTADOR.dev
+Name=ENCRIPTADOR
 Type=1
 Ver=2
 ObjFiles=
@@ -51,7 +51,7 @@ AutoIncBuildNr=0
 SyncProduct=1
 
 [Unit1]
-FileName=Funciones.h
+FileName=Funciones_encript.c
 CompileCpp=0
 Folder=
 Compile=1
@@ -61,7 +61,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit2]
-FileName=Funciones.c
+FileName=Funciones_encript.h
 CompileCpp=0
 Folder=
 Compile=1
@@ -71,7 +71,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit3]
-FileName=PRINCIPAL.c
+FileName=Principal_encript.c
 CompileCpp=0
 Folder=
 Compile=1

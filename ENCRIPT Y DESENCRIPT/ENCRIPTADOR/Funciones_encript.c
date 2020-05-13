@@ -1,4 +1,4 @@
-#include "Funciones.h"
+#include "Funciones_encript.h"
 char fpswrd (char pswrd[12])
 {
 	scanf("%12s", pswrd);
