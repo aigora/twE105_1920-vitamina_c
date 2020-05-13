@@ -1,13 +1,14 @@
-/*Programa con funciones para pedir una constraseÒa
+/*Programa con funciones para pedir una constrase√±a
  * comparar los datos introducidos con los ya existentes
  * crear nuevos usuarios
  * guardar los datos de los usuarios existentes en un fichero
- * (idea de futuro: encriptar el archivo de los nombres de usuario y contraseÒa utilizando el propio encriptador y con una contraseÒa fija que solo conoce el programa).
+ * (idea de futuro: encriptar el archivo de los nombres de usuario y contrase√±a utilizando el propio encriptador y con una contrase√±a fija que solo conoce el programa).
  */
 
+/* TODA ESTA PARTE YA SE INCLUYE EN EL FICHERO .H
 #include <stdio.h>
 
-//constantes con los tamaÒos de algunos elementos del programa. Modificar seg˙n necesidades:
+//constantes con los tama√±os de algunos elementos del programa. Modificar seg√∫n necesidades:
 #define MAX_USERS 100
 #define TAM_USER 30
 #define TAM_PASSWORD 30
@@ -19,18 +20,21 @@ typedef struct{
 
 void nuevo (FILE *fichero, usuarios *new_user, int ultimo_registro, usuarios lista []);
 _Bool iniciar_sesion (FILE *fichero, usuarios usuarios_existentes[], int ultimo_registro); //El fichero es solo por si se elige crear un usuario
-int consulta_registros(FILE *fichero, usuarios vector[]); //Lee el fichero para averiguar el n˙mero de registros existentes (requiere como argumento el puntero al archivo) y adem·s lee y guarda los datos en un vector dado
+int consulta_registros(FILE *fichero, usuarios vector[]); //Lee el fichero para averiguar el n√∫mero de registros existentes (requiere como argumento el puntero al archivo) y adem√°s lee y guarda los datos en un vector dado
 _Bool comparar_cadenas (char *cadena1, char *cadena2, int l1);
 void espera (int intentos);
-int main (){ //Prueba. Todo lo que aquÌ aparece deber· aparecer en el programa principal. (El resto son funciones que se incluir·n en la librerÌa).
+int inicio_normal();
+
+*/
+int inicio_normal (){ //Prueba. Todo lo que aqu√≠ aparece deber√° aparecer en el programa principal. (El resto son funciones que se incluir√°n en la librer√≠a).
 	FILE *users_file;
 	int ultimo_registro, intentos = 0;
 	printf ("Esta parte del programa solo es una prueba y se integrara en el resto del programa en forma de libreria.\n");
 	users_file = fopen ("usuarios.txt", "r"); //Abro en formato de lectura porque lo primero es
 	usuarios lista [MAX_USERS]={0}; //Crea el vector en el que almacenar los datos y borra todo lo que haya.
 	ultimo_registro = consulta_numero_registros(users_file, lista)+1;
-	while (iniciar_sesion (users_file, lista, ultimo_registro)!=1){ //Intenta iniciar sesiÛn hasta que lo hace correctamente
-		espera (intentos); //Espera cada vez m·s tiempo entre intentos para iniciar sesion
+	while (iniciar_sesion (users_file, lista, ultimo_registro)!=1){ //Intenta iniciar sesi√≥n hasta que lo hace correctamente
+		espera (intentos); //Espera cada vez m√°s tiempo entre intentos para iniciar sesion
 		intentos++;
 	}
 	fclose (users_file);
@@ -41,7 +45,7 @@ int main (){ //Prueba. Todo lo que aquÌ aparece deber· aparecer en el programa p
 int consulta_numero_registros (FILE *fichero, usuarios vector[]){
 	printf ("Consultando archivo de usuarios y claves de acceso...\n");
 	_Bool j = 0; //Booleana porque solo hay dos registros (0 usuario, 1 clave de acceso)
-	int i = 0, k = 0; //i controla el n˙mero de registro, la j controla si es usuario o contraseÒa lo que se est· leyendo, la k controla la posicion dentro de cada cadena de texto
+	int i = 0, k = 0; //i controla el n√∫mero de registro, la j controla si es usuario o contrase√±a lo que se est√° leyendo, la k controla la posicion dentro de cada cadena de texto
 	_Bool salida =0;
 	char x;
 	while(fscanf (fichero, "%c", &x)!=EOF&&salida==0){
@@ -50,28 +54,28 @@ int consulta_numero_registros (FILE *fichero, usuarios vector[]){
 			j=1;
 			k=0;
 		}
-		else if (x == '\n'){ //Si llega al salto de lÌnea, es decir, el final del registro...
+		else if (x == '\n'){ //Si llega al salto de l√≠nea, es decir, el final del registro...
 			j=0; //Vuelve al primer "campo"
 			k=0; //Vuelve al comienzo de la cadena de caracteres<
 			i++; //Pasa al siguiente registro
 		}
 		else {
-			//Finalizada la parte de comprobaciÛn de los car·cteres "especiales" que separan datos, etc ahora guardo los datos debidamente
+			//Finalizada la parte de comprobaci√≥n de los car√°cteres "especiales" que separan datos, etc ahora guardo los datos debidamente
 			if (j==0){ //Parte del usuario
 				vector[i].user[k] = x;
 				k++;
 			}
-			else{ //Parte de la contraseÒa
+			else{ //Parte de la contrase√±a
 				vector[i].password[k] = x;
 				k++;
 			}
 		}
-		if (i==(MAX_USERS-1)){ //Si llega al m·ximo de usuarios permitidos, sale del bucle de lectura (lo tiene que detectar una vez antes de que se supere el lÌmite, de ahÌ el -1).
+		if (i==(MAX_USERS-1)){ //Si llega al m√°ximo de usuarios permitidos, sale del bucle de lectura (lo tiene que detectar una vez antes de que se supere el l√≠mite, de ah√≠ el -1).
 			salida = 1;
 		}
 	}
-	rewind (fichero); //Vuelve al comienzo del fichero por si acaso se quiere volver a leer en otro momento desde esta librerÌa sin que se vuelve a abrir el fichero.
-	return i; //Devuelve el n˙mero de registros que ha leÌdo (m·s uno), el n˙mero se refiere a posiciÛn del ˙ltimo registro dentro de un vector.
+	rewind (fichero); //Vuelve al comienzo del fichero por si acaso se quiere volver a leer en otro momento desde esta librer√≠a sin que se vuelve a abrir el fichero.
+	return i; //Devuelve el n√∫mero de registros que ha le√≠do (m√°s uno), el n√∫mero se refiere a posici√≥n del √∫ltimo registro dentro de un vector.
 }
 
 void nuevo (FILE *fichero, usuarios *new_user, int ultimo_registro, usuarios lista[]){
@@ -112,7 +116,7 @@ void nuevo (FILE *fichero, usuarios *new_user, int ultimo_registro, usuarios lis
 	
 	*/
 	
-	//OPCI”N QUE REESCRIBE TODO EL FICHERO, FUNCIONA
+	//OPCI√ìN QUE REESCRIBE TODO EL FICHERO, FUNCIONA
 	printf ("\nReescribiendo el fichero completo...\n");
 	fclose (fichero);
 	fichero = fopen ("usuarios.txt", "w");
@@ -146,10 +150,10 @@ _Bool iniciar_sesion (FILE *fichero, usuarios usuarios_existentes[], int ultimo_
 	scanf ("%i", &opcion);
 	if (opcion==2){
 		nuevo(fichero, &usuarios_existentes[ultimo_registro], ultimo_registro, usuarios_existentes);
-		return 1; //No se pide introducir usuario y contraseÒa si se acaba de crear el usuario
+		return 1; //No se pide introducir usuario y contrase√±a si se acaba de crear el usuario
 	}
-	else{ //Si no se ha elegido la opcion de crear un nuevo usuario entra autom·ticamente en esta, es la forma de evitar
-		//tiempos de espera como si se hubiese cometido un error al introducir usuario y contraseÒa
+	else{ //Si no se ha elegido la opcion de crear un nuevo usuario entra autom√°ticamente en esta, es la forma de evitar
+		//tiempos de espera como si se hubiese cometido un error al introducir usuario y contrase√±a
 		printf ("Usuario: ");
 		fflush (stdin);
 		scanf ("%[^\n]s", &temp.user);
@@ -173,7 +177,7 @@ void espera (int intentos){
 	int i = 0;
 	printf ("Espere para poder volver a intentarlo.\n");
 	for (i=0;i<3000*intentos*intentos*intentos;i++) { //El tiempo de espera es exponencial
-		printf (" %c", 8); //8 es el retroceso en la tabla ASCII. De esta forma se pierde tiempo pero no se llena la pantalla de nuevos car·cteres
+		printf (" %c", 8); //8 es el retroceso en la tabla ASCII. De esta forma se pierde tiempo pero no se llena la pantalla de nuevos car√°cteres
 	}
 	printf ("\n-------------------\n");
 }
@@ -182,9 +186,9 @@ void espera (int intentos){
 
 
 /*NOTAS______________________________
- * El fichero en el que se guardan los nombres de usuario y las contraseÒas tiene la siguiente forma:
- * nombre de usuario de ejemplo; contraseÒa de ejemplo 1
- * nombre del usuario ejemplo 2; contraseÒa de ejemplo 2
+ * El fichero en el que se guardan los nombres de usuario y las contrase√±as tiene la siguiente forma:
+ * nombre de usuario de ejemplo; contrase√±a de ejemplo 1
+ * nombre del usuario ejemplo 2; contrase√±a de ejemplo 2
  * ...
- * (El usuario se separa de la contraseÒa por punto y coma y los registros se separan por saltos de lÌnea.
+ * (El usuario se separa de la contrase√±a por punto y coma y los registros se separan por saltos de l√≠nea.
  */
