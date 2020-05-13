@@ -4,28 +4,7 @@
  * guardar los datos de los usuarios existentes en un fichero
  * (idea de futuro: encriptar el archivo de los nombres de usuario y contraseña utilizando el propio encriptador y con una contraseña fija que solo conoce el programa).
  */
-
-/* TODA ESTA PARTE YA SE INCLUYE EN EL FICHERO .H
-#include <stdio.h>
-
-//constantes con los tamaños de algunos elementos del programa. Modificar según necesidades:
-#define MAX_USERS 100
-#define TAM_USER 30
-#define TAM_PASSWORD 30
-
-typedef struct{
-	char user[TAM_USER];
-	char password[TAM_PASSWORD];
-}usuarios;
-
-void nuevo (FILE *fichero, usuarios *new_user, int ultimo_registro, usuarios lista []);
-_Bool iniciar_sesion (FILE *fichero, usuarios usuarios_existentes[], int ultimo_registro); //El fichero es solo por si se elige crear un usuario
-int consulta_registros(FILE *fichero, usuarios vector[]); //Lee el fichero para averiguar el número de registros existentes (requiere como argumento el puntero al archivo) y además lee y guarda los datos en un vector dado
-_Bool comparar_cadenas (char *cadena1, char *cadena2, int l1);
-void espera (int intentos);
-int inicio_normal();
-
-*/
+#include "Usuarios.h"
 int inicio_normal (){ //Prueba. Todo lo que aquí aparece deberá aparecer en el programa principal. (El resto son funciones que se incluirán en la librería).
 	FILE *users_file;
 	int ultimo_registro, intentos = 0;
