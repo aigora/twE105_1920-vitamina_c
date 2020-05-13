@@ -10,10 +10,10 @@ int main (){
 	char in_file[150], out_file[150]; //Rutas de acceso a los archivos de entrada y salida
 	
 	//Primera parte del programa (ya comprobada y operativa)
-	scanf("%12s", pswrd);//tomo la contraseÃ±a
+	scanf("%12s", pswrd);//tomo la contraseÃƒÂ±a
 	printf("password: %s \n", pswrd); //en un futuro metermos un bucle por si el usuario ha cometido un error
 	while (i<12){
-	    pswrdASCII[i]= pswrd[i]; //creamos una nueva cadena con los caracteres de la contraseÃ±a en ASCII
+	    pswrdASCII[i]= pswrd[i]; //creamos una nueva cadena con los caracteres de la contraseÃƒÂ±a en ASCII
 	    printf("%d \t", pswrdASCII[i]);// hay que revisar el bug del pswrd[9]=1 para valor null
 		//guardamos en tres nuevos arrays las cifras de las unidades (Z), decenas(X) y centenas(Y) de los numeros ASCII de cada caracter
 		Z[i]= pswrdASCII[i]%10;
@@ -88,7 +88,8 @@ int main (){
 	//Parte de manejo de ficheros
 	//Lo primero que hago es pedir las rutas de acceso a los archivos.
 	printf ("\nIntroduce la ruta de acceso al archivo que deseas encriptar. Si\
-	\nel archivo se encuentra en la misma carpeta que este programa solo tendras que poner el nombre del archivo.\n");
+	\nel archivo se encuentra en la misma carpeta que este programa solo tendras que poner el nombre del archivo.\
+	\nAdvertencia: los archivos deben ser txt\n");
 	fflush (stdin); //Limpio el buffer de entrada
 	scanf ("%[^\n]s", in_file);
 	FILE *fichero1;
@@ -107,15 +108,15 @@ int main (){
 	printf ("El fichero tiene %i caracteres.\n", contador);
 	rewind (fichero1);
 	
-	//Asignaci�n din�mica de memoria para crear un vector de la misma longitud que el fichero
+	//Asignación dinámica de memoria para crear un vector de la misma longitud que el fichero
 	char *txtASCII;
 	txtASCII = malloc (sizeof(char)*contador);
 	
 	printf ("Crear/abrir el fichero de salida:\
 	\nIntroduce la ruta de acceso.\
 	\nADVERTENCIA: si eliges un archivo que ya existe se sobreescribira y se perderan los datos guardados en el.\n");
-	//En el futuro puede a�adirse una funci�n que intente abrir el archivo especificado
-	//y que si existe lo advierta y de opci�n a cambiar el nombre de archivo si se desea
+	//En el futuro puede añadirse una función que intente abrir el archivo especificado
+	//y que si existe lo advierta y de opción a cambiar el nombre de archivo si se desea
 	fflush(stdin);
 	scanf ("%[^\n]s", out_file);
 	fichero2 = fopen (out_file, "w");
@@ -126,7 +127,7 @@ int main (){
 	printf ("Encriptando y guardando en el archivo de salida...\n");
 	i=0;
 	while (fscanf(fichero1, "%c", (txtASCII+i))!=EOF){
-		//A�adir el hash y
+		//Añadir el hash y
 		//Operaciones para que no exceda los valores permitidos
 		//c1 = c+1; //Con las debidas operaciones, esto es temporal
 		if (j==12)
