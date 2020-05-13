@@ -59,9 +59,10 @@ int ASCII_a_01(int X[11],int Y[11],int Z[11])
 //
 int Func_Desplz(int X[11],int Y[11],int Z[11],int T[11])
 {
+	printf("hola");
 	int comodin2[11], comodin3[11], comodin4[11];
 	int i=0;
-		while (i<=11)
+		while (i<11)
 		{ 
 			comodin2[i]=Y[i];	
 			Y[i]=X[i];			
@@ -72,6 +73,8 @@ int Func_Desplz(int X[11],int Y[11],int Z[11],int T[11])
 			X[i]=comodin4[i];
 			i++;	
 		}
+		
+	printf("hola");
 	return 0;
 }
 //
