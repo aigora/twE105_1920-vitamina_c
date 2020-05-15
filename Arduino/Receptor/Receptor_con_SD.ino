@@ -27,9 +27,9 @@
 //Se indican los colores utilizados en mayúsculas al final de las siguientes líneas
 #define led_sd 3 //Led de actividad de la SD       AZUL
 #define led_listo 4 //Led que indica que el programa está esperando recibir una transmisión      VERDE
-#define led_recibido 5 //Led que indica que se ha recibido un mensaje       AZUL
-#define led_error 6 //Led que indica que ha habido un problema/error      ROJO
-#define led_aviso 7 //Led que indica si se ha perdido algún mensaje doble (si se han perdido las dos repeticiones es un error directamente      AMARILLO
+#define led_recibido 7 //Led que indica que se ha recibido un mensaje       AZUL
+#define led_error 5 //Led que indica que ha habido un problema/error      ROJO
+#define led_aviso 6 //Led que indica si se ha perdido algún mensaje doble (si se han perdido las dos repeticiones es un error directamente      AMARILLO
 
 //Si esta opción está activada en el emisor, los mensajes se emiten dos veces. Activando esta opción
 //en este programa se descartan los mensajes repetidos. (Es útil cuando la señal no llega muy bien y
