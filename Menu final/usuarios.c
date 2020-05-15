@@ -1,99 +1,10 @@
-#include <stdio.h>
-#include "Usuarios.c" //Incluye el fichero con el programa con las funciones
-//constantes con los tamaños de algunos elementos del programa. Modificar según necesidades:
-#define MAX_USERS 100
-#define TAM_USER 30
-#define TAM_PASSWORD 30
-typedef struct{
-	char user[TAM_USER];
-	char password[TAM_PASSWORD];
-}usuarios;
-void nuevo (FILE *fichero, usuarios *new_user, int ultimo_registro, usuarios lista []);
-_Bool iniciar_sesion (FILE *fichero, usuarios usuarios_existentes[], int ultimo_registro); //El fichero es solo por si se elige crear un usuario
-int consulta_registros(FILE *fichero, usuarios vector[]); //Lee el fichero para averiguar el número de registros existentes (requiere como argumento el puntero al archivo) y además lee y guarda los datos en un vector dado
-_Bool comparar_cadenas (char *cadena1, char *cadena2, int l1);
-void espera (int intentos);
-int inicio_normal();
-void config ();
-void main ()
-{
-	
-	
-	inicio_normal();
-	int x;
-	//El programa se ejecuta indefinidamente hasta que el usuario decide salir
-	_Bool continuar = 0;
-	
-	while (continuar==0){
-		printf("Bienvenido me llamo Jarvis , que desea hacer?\n");//Le doy la bienvenida y le pregunto que desea hacer
-		printf ("OPCIONES:\n1.Encriptar un archivo.\n2.Desencriptar un archivo.\n3.Enviar un archivo por radio (se necesita Arduino y configurar puerto serie).\
-		\n4.Recibir un archivo (se necesita Arduino y configurar el puerto serie).\n5.Opciones de configuracion. *Se necesita para utilizar Arduino.\
-		\n6.Salir.\n\n");
-		scanf("%i",&x);
-		switch (x)
-		{
-			case 1:
-				printf("Excelente,comencemos con la encriptacion\n");
-				break;
-			case 2:
-				printf("Excelente,vamos a ver de que trata ese mensaje...\n");
-				break;
-			case 3:
-				printf("Excelente,que le quiere transmitir al Sr.Stark?\n");
-				break;
-			case 4:
-				printf("Excelente,veamos que tiene para usted el Sr.Stark\n");
-				break;
-			case 5:
-				printf("Abriendo el menu de configuracion...\n");
-				config();
-			case 6:
-				printf("Muy bien ...,hasta la proxima\n");
-				continuar =1;
-				break;
-		    default:
-		    	printf("Parece que el viaje de regreso desde Vormir no le ha sentado muy bien ...");
-		}
-	}
-}
-
-void config (){
-	int x;
-	while (x!=1){
-		printf ("OPCIONES DE CONFIGURACION:\n1. - Salir\n2. - Seleccionar el puerto serie.\n3. - Cambiar el puerto serie (cierra las\
-		\nconexiones existentes).\n"); //Tal vez se añadan más funciones más adelante.
-		scanf ("%i", &x);
-		switch (x){
-			case 2:
-				printf ("Iniciando la creacion de conexion con la placa Arduino via puerto serie. Conecta la placa y selecciona\
-				\nla opcion que desees. (Si tienes dudas, selecciona la opcion de busqueda automatica)\n");
-				//Serial_search(); //Función que se creará a partir del bucle main del archivo Serial.c, una vez modificado todo para funcionar como librería de funciones.
-				break;
-				
-			case 3:
-				printf ("Cerrando las conexiones existentes y creando una nueva.");
-				//Serial_end(puerto_serie); //Comprobar que el argumento de la función es correcto (dependerá de la forma crear la librería y de dónde se declare la variable Serial).
-				printf ("Iniciando la creacion de conexion con la placa Arduino via puerto serie. Conecta la placa y selecciona\
-				\nla opcion que desees. (Si tienes dudas, selecciona la opcion de busqueda automatica)\n");
-				//Serial_search(); //Función que se creará a partir del bucle main del archivo Serial.c, una vez modificado todo para funcionar como librería de funciones.
-				break;
-			
-			case1:
-				printf ("Cerrando configuracion...\n\n");
-				break;
-			
-			default:
-				printf ("Opcion no valida.\nRevisa tu seleccion.\n");
-				break;		
-		}
-	}
-}
-
-
-
-
-
-
+/*Programa con funciones para pedir una constraseña
+ * comparar los datos introducidos con los ya existentes
+ * crear nuevos usuarios
+ * guardar los datos de los usuarios existentes en un fichero
+ * (idea de futuro: encriptar el archivo de los nombres de usuario y contraseña utilizando el propio encriptador y con una contraseña fija que solo conoce el programa).
+ */
+#include "usuarios.h"
 int inicio_normal (){ //Prueba. Todo lo que aquí aparece deberá aparecer en el programa principal. (El resto son funciones que se incluirán en la librería).
 	FILE *users_file;
 	int ultimo_registro, intentos = 0;
@@ -240,3 +151,23 @@ _Bool iniciar_sesion (FILE *fichero, usuarios usuarios_existentes[], int ultimo_
 	}
 }
 
+
+void espera (int intentos){
+	int i = 0;
+	printf ("Espere para poder volver a intentarlo.\n");
+	for (i=0;i<3000*intentos*intentos*intentos;i++) { //El tiempo de espera es exponencial
+		printf (" %c", 8); //8 es el retroceso en la tabla ASCII. De esta forma se pierde tiempo pero no se llena la pantalla de nuevos carácteres
+	}
+	printf ("\n-------------------\n");
+}
+
+
+
+
+/*NOTAS______________________________
+ * El fichero en el que se guardan los nombres de usuario y las contraseñas tiene la siguiente forma:
+ * nombre de usuario de ejemplo; contraseña de ejemplo 1
+ * nombre del usuario ejemplo 2; contraseña de ejemplo 2
+ * ...
+ * (El usuario se separa de la contraseña por punto y coma y los registros se separan por saltos de línea.
+ */

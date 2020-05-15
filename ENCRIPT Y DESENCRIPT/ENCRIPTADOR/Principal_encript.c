@@ -58,7 +58,7 @@ int main (){
 	
 	
 	
-		//Parte de manejo de ficheros
+	//Parte de manejo de ficheros
 	//Lo primero que hago es pedir las rutas de acceso a los archivos.
 	printf ("\nIntroduce la ruta de acceso al archivo que deseas encriptar. Si\
 	\nel archivo se encuentra en la misma carpeta que este programa solo tendras que poner el nombre del archivo.\n");
