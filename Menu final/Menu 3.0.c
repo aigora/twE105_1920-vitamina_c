@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include "function.h"
 #include "usuarios.h"
-void config ();
 int main (){
 	inicio_normal();
 	int x;
@@ -21,18 +20,18 @@ int main (){
 	int U,D,C,comodin2[11], comodin3[11], comodin4[11];
 	char in_file[150], out_file[150]; 
 	
-	fpswrd (pswrd); //FUNCIÓN (Contraseña).
+	fpswrd (pswrd); //FUNCIÃ“N (ContraseÃ±a).
         			  
 	while (i<12){ //ASCII Y UDC
-		Char_a_ASCII(pswrd,pswrdASCII); //FUNCIÓN (Pasar la contraseña de caracteres a ASCII)   
-		UDC (pswrdASCII, X, Y, Z); //FUNCIÓN (Pasamos ASCII a unidades,decenas y centenas)
+		Char_a_ASCII(pswrd,pswrdASCII); //FUNCIÃ“N (Pasar la contraseÃ±a de caracteres a ASCII)   
+		UDC (pswrdASCII, X, Y, Z); //FUNCIÃ“N (Pasamos ASCII a unidades,decenas y centenas)
 	i++;
     }
 	
-	ASCII_a_01(X,Y,Z);//FUNCIÓN (X Y Z a binario)
+	ASCII_a_01(X,Y,Z);//FUNCIÃ“N (X Y Z a binario)
 	printf("\n");
 
-	while(iter<6){ //Iteración para hash
+	while(iter<6){ //IteraciÃ³n para hash
     	i=0;
 	    while(i<12){ //vamos a crear un ultimo arrai que obtenga su valor dependiendo de comparar X,Y y Z; teniendo en cuenta permutaciones positivas y negativas
 	    	if(i%2==0){
@@ -57,8 +56,8 @@ int main (){
 	i=0;
 	iter++;
 	}
-	printf ("\n OPCIONES:\n1.Encriptar un archivo.\n2.Desencriptar un archivo.\n3.Opciones de configuracion. *Se necesita para utilizar Arduino.\
-		\n4.Salir.\n\n");
+	printf ("\n OPCIONES:\n1.Encriptar un archivo.\n2.Desencriptar un archivo.\n *Se necesita para utilizar Arduino.\
+		\n3.Salir.\n\n");
 	scanf("%i",&x);
 	switch (x){
 			case 1:
@@ -74,18 +73,18 @@ int main (){
 					return -1;
 				}
 				printf ("Fichero abierto correctamente.\n");
-				while (fscanf(fichero1, "%c", &c)!=EOF){ //while contador nº caracteres
+				while (fscanf(fichero1, "%c", &c)!=EOF){ //while contador nÂº caracteres
 				contador++;
 				}
 				printf ("El fichero tiene %i caracteres.\n", contador);
 				rewind (fichero1);
-				//Asignación dinámica de memoria para crear un vector de la misma longitud que el fichero
+				//AsignaciÃ³n dinÃ¡mica de memoria para crear un vector de la misma longitud que el fichero
 				txtASCII = malloc (sizeof(char)*contador);
 				printf ("Crear/abrir el fichero de salida:\
 						\nIntroduce la ruta de acceso.\
 						\nADVERTENCIA: si eliges un archivo que ya existe se sobreescribira y se perderan los datos guardados en el.\n");
-				//En el futuro puede añadirse una función que intente abrir el archivo especificado
-				//y que si existe lo advierta y de opción a cambiar el nombre de archivo si se desea
+				//En el futuro puede aÃ±adirse una funciÃ³n que intente abrir el archivo especificado
+				//y que si existe lo advierta y de opciÃ³n a cambiar el nombre de archivo si se desea
 				fflush(stdin);
 				scanf ("%[^\n]s", out_file);
 				fichero2 = fopen (out_file, "w");
@@ -95,7 +94,7 @@ int main (){
 				printf ("Encriptando y guardando en el archivo de salida\n");
 				i=0;
 				while (fscanf(fichero1, "%c", (txtASCII+i))!=EOF){ //WHILE ARCHIVO+=HASH 
-					//Añadir el hash y
+					//AÃ±adir el hash y
 					//Operaciones para que no exceda los valores permitidos
 					//c1 = c+1; //Con las debidas operaciones, esto es temporal
 					if (j==12)
@@ -133,12 +132,12 @@ int main (){
 					return -1;
 				}
 				printf ("Fichero abierto correctamente.\n");
-				while (fscanf(fichero1, "%c", &c)!=EOF){ //while contador nº caracteres
+				while (fscanf(fichero1, "%c", &c)!=EOF){ //while contador nÂº caracteres
 				contador++;
 				}
 				printf ("El fichero tiene %i caracteres.\n", contador);
 				rewind (fichero1);
-				//Asignación dinámica de memoria para crear un vector de la misma longitud que el fichero
+				//AsignaciÃ³n dinÃ¡mica de memoria para crear un vector de la misma longitud que el fichero
 				txtASCII = malloc (sizeof(char)*contador);
 				printf ("Crear/abrir el fichero de salida:\
 						\nIntroduce la ruta de acceso.\
@@ -152,7 +151,7 @@ int main (){
 				printf ("Desencriptando y guardando en el archivo de salida\n");
 				i=0;
 				while (fscanf(fichero1, "%c", (txtASCII+i))!=EOF){ //WHILE ARCHIVO+=HASH 
-					//Añadir el hash y
+					//AÃ±adir el hash y
 					//Operaciones para que no exceda los valores permitidos
 					//c1 = c+1; //Con las debidas operaciones, esto es temporal
 					if (j==12)
@@ -175,16 +174,8 @@ int main (){
 				if(respuesta=='N'){
 					continuar=1;
 				}
+			
 			case 3:
-				printf("Abriendo el menu de configuracion\n");
-				config();
-				fflush(stdin);
-				printf("\n 		Desea continuar? Si[Y] No [N]\n");
-				scanf("%c", &respuesta);
-				if(respuesta=='N'){
-					continuar=1;
-				}
-			case 4:
 				printf("Muy bien, hasta la proxima\n");
 				continuar =1;
 				break;
@@ -201,35 +192,4 @@ int main (){
 	}
 	}
 }
-void config (){ //CONFIGURACION PUERTO SERIE
 
-	int x;
-	while (x!=1){
-		printf ("OPCIONES DE CONFIGURACION:\n1. - Salir\n2. - Seleccionar el puerto serie.\n3. - Cambiar el puerto serie (cierra las\
-		\nconexiones existentes).\n"); //Tal vez se añadan más funciones más adelante.
-		scanf ("%i", &x);
-		switch (x){
-			case 2:
-				printf ("Iniciando la creacion de conexion con la placa Arduino via puerto serie. Conecta la placa y selecciona\
-				\nla opcion que desees. (Si tienes dudas, selecciona la opcion de busqueda automatica)\n");
-				//Serial_search(); //Función que se creará a partir del bucle main del archivo Serial.c, una vez modificado todo para funcionar como librería de funciones.
-				break;
-				
-			case 3:
-				printf ("Cerrando las conexiones existentes y creando una nueva.");
-				//Serial_end(puerto_serie); //Comprobar que el argumento de la función es correcto (dependerá de la forma crear la librería y de dónde se declare la variable Serial).
-				printf ("Iniciando la creacion de conexion con la placa Arduino via puerto serie. Conecta la placa y selecciona\
-				\nla opcion que desees. (Si tienes dudas, selecciona la opcion de busqueda automatica)\n");
-				//Serial_search(); //Función que se creará a partir del bucle main del archivo Serial.c, una vez modificado todo para funcionar como librería de funciones.
-				break;
-			
-			case1:
-				printf ("Cerrando configuracion...\n\n");
-				break;
-			
-			default:
-				printf ("Opcion no valida.\nRevisa tu seleccion.\n");
-				break;		
-		}
-	}
-}
