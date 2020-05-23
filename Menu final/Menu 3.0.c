@@ -162,18 +162,18 @@ int main (){
 					fprintf (fichero2, "%c", *(txtASCII+i));
 					j++;
 					i++;
+				}
 				printf ("Fichero escrito, cerrando");
-	
 				fclose (fichero1);
 				fclose (fichero2);
 				free (txtASCII);
-				break;
 				fflush(stdin);
 				printf("\n 		Desea continuar? Si[Y] No [N]\n");
 				scanf("%c", &respuesta);
 				if(respuesta=='N'){
 					continuar=1;
 				}
+				break;
 			
 			case 3:
 				printf("Muy bien, hasta la proxima\n");
@@ -189,7 +189,6 @@ int main (){
 					continuar=1;
 				}
 		}
-	}
 	}
 }
 
