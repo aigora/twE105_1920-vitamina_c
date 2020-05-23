@@ -80,7 +80,7 @@ void nuevo (FILE *fichero, usuarios *new_user, int ultimo_registro, usuarios lis
 			printf ("Error en la clave de acceso. No coinciden.\n");
 		}
 	}
-	printf ("Guardando el nuevo usuario en la lista de usuarios");
+	printf ("Guardando el nuevo usuario en la lista de usuarios \n");
 	/*CONTIENE ERRORES - NO ESCRIBE BIEN EN EL ARCHIVO
 	fichero = open ("usuarios.txt", "w");
 	if (fichero == NULL){

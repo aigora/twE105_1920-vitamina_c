@@ -10,7 +10,7 @@ int main (){
 	char *txtASCII;
 	char respuesta;
 	_Bool continuar = 0;
-			printf("				----------BIENVENIDO A VITAMINA C----------\n \n");
+			printf("\n\n 			----------BIENVENIDO A VITAMINA C----------\n \n");
 	while (continuar==0){//El programa se ejecuta indefinidamente hasta que el usuario decide salir
 		printf("Introduzca la password (recomendamos una password de 12 caracteres para un mejor funcionamiento): \n	");
 		char c;
@@ -56,7 +56,7 @@ int main (){
 	i=0;
 	iter++;
 	}
-	printf ("\n OPCIONES:\n1.Encriptar un archivo.\n2.Desencriptar un archivo.\n *Se necesita para utilizar Arduino.\
+	printf ("\n OPCIONES:\n1.Encriptar un archivo.\n2.Desencriptar un archivo.\n \
 		\n3.Salir.\n\n");
 	scanf("%i",&x);
 	switch (x){
