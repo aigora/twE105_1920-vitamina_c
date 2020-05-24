@@ -23,18 +23,18 @@ int main (){
 	int U,D,C,comodin2[11], comodin3[11], comodin4[11];
 	char in_file[150], out_file[150]; 
 	
-	fpswrd (pswrd); //FUNCIÃ“N (ContraseÃ±a).
+	fpswrd (pswrd); //FUNCIÓN (Contraseña).
         			  
 	while (i<12){ //ASCII Y UDC
-		Char_a_ASCII(pswrd,pswrdASCII); //FUNCIÃ“N (Pasar la contraseÃ±a de caracteres a ASCII)   
-		UDC (pswrdASCII, X, Y, Z); //FUNCIÃ“N (Pasamos ASCII a unidades,decenas y centenas)
+		Char_a_ASCII(pswrd,pswrdASCII); //FUNCIÓN (Pasar la contraseña de caracteres a ASCII)   
+		UDC (pswrdASCII, X, Y, Z); //FUNCIÓN (Pasamos ASCII a unidades,decenas y centenas)
 	i++;
     }
 	
-	ASCII_a_01(X,Y,Z);//FUNCIÃ“N (X Y Z a binario)
+	ASCII_a_01(X,Y,Z);//FUNCIÓN (X Y Z a binario)
 	printf("\n");
 
-	while(iter<6){ //IteraciÃ³n para hash
+	while(iter<6){ //Iteración para hash
     	i=0;
 	    while(i<12){ //vamos a crear un ultimo arrai que obtenga su valor dependiendo de comparar X,Y y Z; teniendo en cuenta permutaciones positivas y negativas
 	    	if(i%2==0){
@@ -79,17 +79,17 @@ int main (){
 					return -1;
 				}
 				printf ("	Fichero abierto correctamente.\n");
-				while (fscanf(fichero1, "%c", &c)!=EOF){ //while contador nÂº caracteres
+				while (fscanf(fichero1, "%c", &c)!=EOF){ //while contador nº caracteres
 				contador++;
 				}
 				printf ("		El fichero tiene %i caracteres.\n", contador);
 				rewind (fichero1);
-				//AsignaciÃ³n dinÃ¡mica de memoria para crear un vector de la misma longitud que el fichero
+				//Asignación dinámica de memoria para crear un vector de la misma longitud que el fichero
 				txtASCII = malloc (sizeof(char)*contador);
 				printf ("\n \nIntroduce la ruta de acceso.\
 						\n	ADVERTENCIA: si eliges un archivo que ya existe se sobreescribira y se perderan los datos guardados en el.\n\n	");
-				//En el futuro puede aÃ±adirse una funciÃ³n que intente abrir el archivo especificado
-				//y que si existe lo advierta y de opciÃ³n a cambiar el nombre de archivo si se desea
+				//En el futuro puede añadirse una función que intente abrir el archivo especificado
+				//y que si existe lo advierta y de opción a cambiar el nombre de archivo si se desea
 				fflush(stdin);
 				scanf ("%[^\n]s", out_file);
 				system("cls");
@@ -101,7 +101,7 @@ int main (){
 				printf ("\nEncriptando y guardando en el archivo de salida\n");
 				i=0;
 				while (fscanf(fichero1, "%c", (txtASCII+i))!=EOF){ //WHILE ARCHIVO+=HASH 
-					//AÃ±adir el hash y
+					//Añadir el hash y
 					//Operaciones para que no exceda los valores permitidos
 					//c1 = c+1; //Con las debidas operaciones, esto es temporal
 					if (j==12)
@@ -142,12 +142,12 @@ int main (){
 					return -1;
 				}
 				printf ("	Fichero abierto correctamente.\n");
-				while (fscanf(fichero1, "%c", &c)!=EOF){ //while contador nÂº caracteres
+				while (fscanf(fichero1, "%c", &c)!=EOF){ //while contador nº caracteres
 				contador++;
 				}
 				printf ("		El fichero tiene %i caracteres.\n", contador);
 				rewind (fichero1);
-				//AsignaciÃ³n dinÃ¡mica de memoria para crear un vector de la misma longitud que el fichero
+				//Asignación dinámica de memoria para crear un vector de la misma longitud que el fichero
 				txtASCII = malloc (sizeof(char)*contador);
 				printf ("\nIntroduce la ruta de acceso.\
 						\n	ADVERTENCIA: si eliges un archivo que ya existe se sobreescribira y se perderan los datos guardados en el.\n\n	");
@@ -162,7 +162,7 @@ int main (){
 				printf ("\nDesencriptando y guardando en el archivo de salida\n");
 				i=0;
 				while (fscanf(fichero1, "%c", (txtASCII+i))!=EOF){ //WHILE ARCHIVO+=HASH 
-					//AÃ±adir el hash y
+					//Añadir el hash y
 					//Operaciones para que no exceda los valores permitidos
 					//c1 = c+1; //Con las debidas operaciones, esto es temporal
 					if (j==12)
