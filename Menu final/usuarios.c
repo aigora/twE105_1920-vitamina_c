@@ -8,7 +8,7 @@
 int inicio_normal (){ //Prueba. Todo lo que aquí aparece deberá aparecer en el programa principal. (El resto son funciones que se incluirán en la librería).
 	FILE *users_file;
 	int ultimo_registro, intentos = 0;
-	printf ("Esta parte del programa solo es una prueba y se integrara en el resto del programa en forma de libreria.\n");
+	//printf ("Esta parte del programa solo es una prueba y se integrara en el resto del programa en forma de libreria.\n");
 	users_file = fopen ("usuarios.txt", "r"); //Abro en formato de lectura porque lo primero es
 	usuarios lista [MAX_USERS]={0}; //Crea el vector en el que almacenar los datos y borra todo lo que haya.
 	ultimo_registro = consulta_numero_registros(users_file, lista)+1;
@@ -22,7 +22,7 @@ int inicio_normal (){ //Prueba. Todo lo que aquí aparece deberá aparecer en el
 }
 
 int consulta_numero_registros (FILE *fichero, usuarios vector[]){
-	printf ("Consultando archivo de usuarios y claves de acceso...\n");
+	//printf ("\n\nConsultando archivo de usuarios y claves de acceso...\n \n");
 	_Bool j = 0; //Booleana porque solo hay dos registros (0 usuario, 1 clave de acceso)
 	int i = 0, k = 0; //i controla el número de registro, la j controla si es usuario o contraseña lo que se está leyendo, la k controla la posicion dentro de cada cadena de texto
 	_Bool salida =0;
@@ -64,13 +64,13 @@ void nuevo (FILE *fichero, usuarios *new_user, int ultimo_registro, usuarios lis
 	char clave2 [TAM_PASSWORD] = {0};
 	while (salida==0){
 		fflush(stdin);
-		printf ("Introduce el nombre de usuario:\n");
+		printf ("Introduce el nombre de usuario:\n	");
 		scanf ("%[^\n]s", new_user->user);
 		fflush (stdin);
-		printf ("Introduzca clave de acceso: \n");
+		printf ("Introduzca clave de acceso: \n	");
 		scanf ("%[^\n]s", new_user->password);
 		fflush (stdin);
-		printf ("Confirme la clave de acceso: \n");
+		printf ("Confirme la clave de acceso:\n	");
 		scanf ("%[^\n]s", &clave2);
 		if (comparar_cadenas(new_user->password, clave2, TAM_PASSWORD)==1){
 			salida = 1;
@@ -96,7 +96,7 @@ void nuevo (FILE *fichero, usuarios *new_user, int ultimo_registro, usuarios lis
 	*/
 	
 	//OPCIÓN QUE REESCRIBE TODO EL FICHERO, FUNCIONA
-	printf ("\nReescribiendo el fichero completo...\n");
+	printf ("\n Reescribiendo el fichero completo...\n");
 	fclose (fichero);
 	fichero = fopen ("usuarios.txt", "w");
 	rewind (fichero); //Se posiciona al comienzo del fichero (por si no lo estaba).
@@ -124,19 +124,21 @@ _Bool iniciar_sesion (FILE *fichero, usuarios usuarios_existentes[], int ultimo_
 	int opcion, i;
 	usuarios temp = {0};
 	_Bool salida = 0;
-	printf ("INICIAR SESION:");
-	printf ("1. - Iniciar sesion como un usuario ya registrado.\n2. - Crear un nuevo usuario. (Limite de usuarios 100).");
+	printf ("\nINICIAR SESION: \n[Si es la primera vez que inicia el programa seleccione la opc. 2]\n");
+	printf ("	1. - Iniciar sesion como un usuario ya registrado.\n	2. - Crear un nuevo usuario. (Limite de usuarios 100). \n");
 	scanf ("%i", &opcion);
+	system("cls");
+	system("clear");
 	if (opcion==2){
 		nuevo(fichero, &usuarios_existentes[ultimo_registro], ultimo_registro, usuarios_existentes);
 		return 1; //No se pide introducir usuario y contraseña si se acaba de crear el usuario
 	}
 	else{ //Si no se ha elegido la opcion de crear un nuevo usuario entra automáticamente en esta, es la forma de evitar
 		//tiempos de espera como si se hubiese cometido un error al introducir usuario y contraseña
-		printf ("Usuario: ");
+		printf ("\nUsuario:\n	");
 		fflush (stdin);
 		scanf ("%[^\n]s", &temp.user);
-		printf ("Clave de acceso: ");
+		printf ("Clave de acceso:\n	");
 		fflush (stdin);
 		scanf ("%[^\n]s", &temp.password);
 		for (i=0;i<ultimo_registro;i++){
