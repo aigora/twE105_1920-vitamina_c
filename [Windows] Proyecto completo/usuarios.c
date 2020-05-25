@@ -26,7 +26,6 @@ int inicio_normal (char password[]){ //Prueba. Todo lo que aquí aparece deberá
 }
 
 int consulta_numero_registros (FILE *fichero, usuarios vector[]){
-	printf ("Consultando archivo de usuarios y claves de acceso...\n");
 	_Bool j = 0; //Booleana porque solo hay dos registros (0 usuario, 1 clave de acceso)
 	int i = 0, k = 0; //i controla el número de registro, la j controla si es usuario o contraseña lo que se está leyendo, la k controla la posicion dentro de cada cadena de texto
 	_Bool salida =0;
@@ -84,23 +83,8 @@ void nuevo (FILE *fichero, usuarios *new_user, int ultimo_registro, usuarios lis
 			printf ("Error en la clave de acceso. No coinciden.\n");
 		}
 	}
-	printf ("Guardando el nuevo usuario en la lista de usuarios");
-	/*CONTIENE ERRORES - NO ESCRIBE BIEN EN EL ARCHIVO
-	fichero = open ("usuarios.txt", "w");
-	if (fichero == NULL){
-		printf ("Error abriendo el fichero para guardar el nuevo usuario.");
-		return -1;
-	}
-	fseek (fichero, 0, SEEK_END);
-	fprintf (fichero, "\n%s;%s", new_user->user, new_user->password);
-	//En esta parte no funciona, no consigo poder escribir en el archivo en la posicion final
-	fclose (fichero); //Cierro el fichero
-	fichero = fopen ("usuarios.txt", "r");
 	
-	*/
-	
-	//OPCIÓN QUE REESCRIBE TODO EL FICHERO, FUNCIONA
-	printf ("\nReescribiendo el fichero completo...\n");
+	//Reescribe todo el fichero y a�ade los nuevos datos
 	fclose (fichero);
 	fichero = fopen ("usuarios.txt", "w");
 	rewind (fichero); //Se posiciona al comienzo del fichero (por si no lo estaba).
@@ -128,8 +112,10 @@ _Bool iniciar_sesion (FILE *fichero, usuarios usuarios_existentes[], int ultimo_
 	int opcion, i;
 	usuarios temp = {0};
 	_Bool salida = 0;
-	printf ("INICIAR SESION:\n");
-	printf ("1. - Iniciar sesion como un usuario ya registrado.\n2. - Crear un nuevo usuario. (Limite de usuarios 100).");
+	printf ("\t\t\t\t-------VITAMINA C-------\n");
+	printf ("\t\t\t\t----Version completa----\n");
+	printf("\n\n\n\n\n\n\t\tINICIO DE SESION\n\n\tSeleccione una opcion:\n");
+	printf ("\t1. - Iniciar sesion como un usuario ya registrado.\n\t2. - Crear un nuevo usuario. (Limite de usuarios 100).\n");
 	scanf ("%i", &opcion);
 	if (opcion==2){
 		nuevo(fichero, &usuarios_existentes[ultimo_registro], ultimo_registro, usuarios_existentes);
@@ -146,7 +132,6 @@ _Bool iniciar_sesion (FILE *fichero, usuarios usuarios_existentes[], int ultimo_
 		for (i=0;i<ultimo_registro;i++){
 			if(comparar_cadenas (usuarios_existentes[i].user, temp.user, TAM_USER)){
 				if (comparar_cadenas(usuarios_existentes[i].password, temp.password, TAM_PASSWORD)){
-					printf ("Usuario y clave de acceso correctos.\n");
 					salida = 1;
 				}
 			}
@@ -159,10 +144,10 @@ _Bool iniciar_sesion (FILE *fichero, usuarios usuarios_existentes[], int ultimo_
 void espera (int intentos){
 	int i = 0;
 	printf ("Espere para poder volver a intentarlo.\n");
-	for (i=0;i<3000*intentos*intentos*intentos;i++) { //El tiempo de espera es exponencial
+	for (i=0;i<5000*intentos*intentos*intentos;i++) { //El tiempo de espera es exponencial
 		printf (" %c", 8); //8 es el retroceso en la tabla ASCII. De esta forma se pierde tiempo pero no se llena la pantalla de nuevos carácteres
 	}
-	printf ("\n-------------------\n");
+	system("cls");
 }
 
 

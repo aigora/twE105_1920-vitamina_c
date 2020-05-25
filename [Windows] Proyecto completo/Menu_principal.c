@@ -18,52 +18,18 @@ int main (){
 	char y, *mensaje_salida;
 	char respuesta=0;
 	_Bool continuar = 0;
-			printf("				----------BIENVENIDO A VITAMINA C----------\n \n");
 	while (continuar==0){//El programa se ejecuta indefinidamente hasta que el usuario decide salir
-		printf("Introduzca la password para la encriptacion (recomendamos una password de 12 caracteres para un mejor funcionamiento): \n	");
-		char c;
+	char c;
 	char pswrd[12]; //Array de 13 caracteres
 	int iter=0, i=0, j=0, x=0, y=0, z=0, contador=0;
 	int pswrdASCII[11], X[11], Y[11], Z[11],T[11];
 	int U,D,C,comodin2[11], comodin3[11], comodin4[11];
-	char in_file[150], out_file[150], send_file[150]; 
+	char in_file[150], out_file[150], send_file[150];
 	
-	fpswrd (pswrd); //FUNCIÓN (Contraseña).
-        			  
-	while (i<12){ //ASCII Y UDC
-		Char_a_ASCII(pswrd,pswrdASCII); //FUNCIÓN (Pasar la contraseña de caracteres a ASCII)   
-		UDC (pswrdASCII, X, Y, Z); //FUNCIÓN (Pasamos ASCII a unidades,decenas y centenas)
-	i++;
-    }
-	
-	ASCII_a_01(X,Y,Z);//FUNCIÓN (X Y Z a binario)
-	printf("\n");
-
-	while(iter<6){ //Iteración para hash
-    	i=0;
-	    while(i<12){ //vamos a crear un ultimo arrai que obtenga su valor dependiendo de comparar X,Y y Z; teniendo en cuenta permutaciones positivas y negativas
-	    	if(i%2==0){
-	    		if(X[i]==Z[i]){
-	    			T[i]=1;
-				}else{
-					T[i]=0;
-				}
-	    	}else{
-	    		if(Y[i]==Z[i]){
-	    			T[i]=1;
-					}else{
-					T[i]=0;
-				}
-			}
-	    i++;
-		}
-
-		
-		Func_Desplz(X,Y,Z,T);//(Valores de X en Y, Y en Z, Z en T y T en X)
-
-	i=0;
-	iter++;
-	}
+	system ("cls");
+	printf ("\t\t\t\t----------VITAMINA C----------\n");
+	printf ("\t\t\t\t______________________________\n\n\n");
+	printf ("\t\t\t     version completa - solo para Windows\n\n\n");
 	printf ("\n OPCIONES:\n1.Encriptar un archivo.\n2.Desencriptar un archivo.\
 	\n3.Enviar un archivo por radio - Se requiere Arduino y haber realizado primero la conexion (ver opcion 4)\
 	\n4.Establecer conexion con Arduino - Se requiere Arduino\n5.Salir\n\n");
@@ -71,6 +37,53 @@ int main (){
 	scanf("%i",&x);
 	switch (x){
 			case 1:
+				system ("cls");
+				printf ("\t\t\t\t----------VITAMINA C----------\n");
+				printf ("\t\t\t\t______________________________\n\n\n");
+				printf ("Introduce la clave de encriptado:\n\t\t");
+				fpswrd (pswrd); //FUNCIÓN (Contraseña).
+				
+				//Simula "tapar" la contraseña con asteriscos
+        		system ("cls");
+				printf ("\t\t\t\t----------VITAMINA C----------\n");
+				printf ("\t\t\t\t______________________________\n\n\n");
+				printf ("Introduce la clave de encriptado:\n\t\t");
+				printf ("***********"); 
+				while (i<12){ //ASCII Y UDC
+					Char_a_ASCII(pswrd,pswrdASCII); //FUNCIÓN (Pasar la contraseña de caracteres a ASCII)   
+					UDC (pswrdASCII, X, Y, Z); //FUNCIÓN (Pasamos ASCII a unidades,decenas y centenas)
+					i++;
+    			}
+				
+				ASCII_a_01(X,Y,Z);//FUNCIÓN (X Y Z a binario)
+				printf("\n");
+			
+				while(iter<6){ //Iteración para hash
+    				i=0;
+	    			while(i<12){ //vamos a crear un ultimo array que obtenga su valor dependiendo de comparar X,Y y Z; teniendo en cuenta permutaciones positivas y negativas
+	    				if(i%2==0){
+	    					if(X[i]==Z[i])
+	    						T[i]=1;
+							else
+								T[i]=0;
+	    				}
+						else{
+	    					if(Y[i]==Z[i])
+	    						T[i]=1;
+								else
+								T[i]=0;
+						}
+	    				i++;
+					}
+			
+					Func_Desplz(X,Y,Z,T);//(Valores de X en Y, Y en Z, Z en T y T en X)
+					i=0;
+					iter++;
+				}
+				
+				
+				//Aquí se comienza a trabajar con el archivo realmente. Hasta ahora era el manejo de la contraseña y la creación del hash
+				
 				printf("Excelente,comencemos con la encriptacion\n");
 				printf ("\nIntroduce la ruta de acceso del archivo .txt que deseas encriptar.\
 				\n[Si el archivo se encuentra en la misma carpeta que este programa solo tendras que poner el nombre del archivo.]\n \n	");
@@ -79,14 +92,14 @@ int main (){
 				printf ("\n Abriendo el fichero de lectura %s\n", in_file);
 				fichero1 = fopen (in_file, "r");
 				if (fichero1==NULL){ //If error apertura de archivo a encriptar
-					printf ("Error en la apertura del fichero.\n");
+					printf ("\tError en la apertura del fichero.\n");
 					return -1;
 				}
-				printf ("Fichero abierto correctamente.\n");
+				printf ("\tFichero abierto correctamente.\n");
 				while (fscanf(fichero1, "%c", &c)!=EOF){ //while contador nº caracteres
 				contador++;
 				}
-				printf ("El fichero tiene %i caracteres.\n", contador);
+				printf ("\t\tEl fichero tiene %i caracteres.\n", contador);
 				rewind (fichero1);
 				//Asignación dinámica de memoria para crear un vector de la misma longitud que el fichero
 				txtASCII = malloc (sizeof(char)*contador);
@@ -116,19 +129,68 @@ int main (){
 					j++;
 					i++;
 				}
-				printf ("Fichero escrito, cerrando");
+				printf ("\t\tFichero escrito, cerrando");
 	
 				fclose (fichero1);
 				fclose (fichero2);
 				free (txtASCII);
 				fflush(stdin);
-				printf("\n 		Desea continuar? Si[Y] No [N]\n");
+				printf("\n 		Desea continuar? No [N]\tSi [cualquier tecla + intro]\n");
 				scanf("%c", &respuesta);
 				if(respuesta=='N'){
 					continuar=1;
 				}
+				else{
+					continuar = 0;
+				}
 			break;
+			
 			case 2:
+				system ("cls");
+				printf ("\t\t\t\t----------VITAMINA C----------\n");
+				printf ("\t\t\t\t______________________________\n\n\n");
+				printf ("Introduce la clave de encriptado:\n\t\t");
+				fpswrd (pswrd); //FUNCIÓN (Contraseña).
+				
+				//Simula "tapar" la contraseña con asteriscos
+        		system ("cls");
+				printf ("\t\t\t\t----------VITAMINA C----------\n");
+				printf ("\t\t\t\t______________________________\n\n\n");
+				printf ("Introduce la clave de encriptado:\n\t\t");
+				printf ("***********"); 
+				while (i<12){ //ASCII Y UDC
+					Char_a_ASCII(pswrd,pswrdASCII); //FUNCIÓN (Pasar la contraseña de caracteres a ASCII)   
+					UDC (pswrdASCII, X, Y, Z); //FUNCIÓN (Pasamos ASCII a unidades,decenas y centenas)
+					i++;
+    			}
+				
+				ASCII_a_01(X,Y,Z);//FUNCIÓN (X Y Z a binario)
+				printf("\n");
+			
+				while(iter<6){ //Iteración para hash
+    				i=0;
+	    			while(i<12){ //vamos a crear un ultimo array que obtenga su valor dependiendo de comparar X,Y y Z; teniendo en cuenta permutaciones positivas y negativas
+	    				if(i%2==0){
+	    					if(X[i]==Z[i])
+	    						T[i]=1;
+							else
+								T[i]=0;
+	    				}
+						else{
+	    					if(Y[i]==Z[i])
+	    						T[i]=1;
+								else
+								T[i]=0;
+						}
+	    				i++;
+					}
+			
+					Func_Desplz(X,Y,Z,T);//(Valores de X en Y, Y en Z, Z en T y T en X)
+					i=0;
+					iter++;
+				}
+				
+				//Aquí se comienza a desencriptar el archivo. Hasta ahora era el manejo de la contraseña y la creación del hash
 				printf("Excelente,vamos a ver de que trata ese mensaje...\n");
 				printf ("\nIntroduce la ruta de acceso al archivo .txt que deseas desencriptar.\
 				\n Si el archivo se encuentra en la misma carpeta que este programa solo tendras que poner el nombre del archivo.\n");
@@ -178,69 +240,8 @@ int main (){
 				fclose (fichero1);
 				fclose (fichero2);
 				free (txtASCII);
-				break;
-				/*
-				fflush(stdin);
-				printf("\n 		Desea continuar? Si[Y] No [N]\n");
-				scanf("%c", &respuesta);
-				if(respuesta=='N'){
-					continuar=1;
-				}*/
-			/*case 3:
-				printf ("Enviar archivos por radio\n");
-				printf ("Para comenzar la emision, introduce la ruta de acceso al archivo.\
-				\nPara mayor seguridad, te recomendamos que lo hayas encriptado previamente\
-				\nSi el archivo se encuentra en la carpeta del programa, solo tienes que poner el nombre\
-				\nde lo contrario tendras que poner la ruta de acceso completa.\n\n\n");
-				fflush (stdin);
-				scanf ("%[^\n]s", send_file);
-				fichero = fopen (send_file, "r");
-				if (fichero==NULL){
-					printf ("Error de lectura del fichero.\n");
-					return -1;
-				}
-				else{
-					printf ("El fichero %s se ha abierto correctamente\n\n", send_file);
-				}
-				printf ("Leyendo el fichero...\n");
-				char borrar;
-				rewind (fichero);
-				while (fscanf(fichero, "%c", &borrar)!=EOF)
-					printf ("%c", x);
-				rewind (fichero);
-				int cont=0;
-				while (fscanf(fichero, "%c", (mensaje_salida+cont))!=EOF){
-					//printf ("%c", *(mensaje_salida+contador_envio));
-					cont++;
-					if (cont==(MAX_ENVIO-3)){
-						cont=0;
-						*(mensaje_salida+(MAX_ENVIO-2))='#';
-						*(mensaje_salida+(MAX_ENVIO-1))='·';
-						//printf ("Procediendo a enviar\n");
-						if (!Serial_write (&puertoserie, mensaje_salida)){
-							printf ("Error en el envio\n");
-						}
-						else{
-							//printf ("Datos enviados\n");
-						}
-					}
-				}
-				//Una vez ha terminado de leer el fichero, se envía todo lo que hay guardado en ese momento en el vector
-				//Del mismo modo que antes hay que añadir # · (para ello, utilizo el último valor de contador_envio)
-				*(mensaje_salida + cont+1)='#';
-				*(mensaje_salida + cont+2)='·';
-				//for (j1=(contador_envio);j1<MAX_ENVIO;j1++)
-				//	*(mensaje_salida+j1)=NULL; //Borra el resto de la cadena
-				printf ("Procediendo a enviar\n");
-				if (!Serial_write (&puertoserie, mensaje_salida)){
-					printf ("Error en el envio\n");
-				}
-				else{
-					printf ("Datos enviados\n");
-				}
-				printf ("Fin del proceso de envio de los datos\n");
-				break;*/
-				
+			break;
+
 			case 3:
 				printf ("Vamos a proceder con el envio del mensaje.\nNecesitaremos una ruta de acceso al archivo o su nombre si el archivo esta en la carpeta del programa:\n\t");
 				fflush(stdin); //Borra el buffer de entrada
@@ -294,7 +295,8 @@ int main (){
 							printf ("El envio se ha realizado correctamente");
 						}
 				printf ("\nLectura finalizada\n");
-				break;
+			break;
+			
 			case 4:
 				//Toda esta parte originalmente se encontraba en la librería Serial.h
 				//pero debido a los problemas pasando el puntero de unas funciones a otras desde el programa
