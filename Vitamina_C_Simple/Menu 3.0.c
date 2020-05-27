@@ -75,7 +75,10 @@ int main (){
 				printf ("\nAbriendo el fichero de lectura %s\n", in_file);
 				fichero1 = fopen (in_file, "r");
 				if (fichero1==NULL){ //If error apertura de archivo a encriptar
-					printf ("	Error en la apertura del fichero.\n");
+					printf ("\tError en la apertura del fichero.\n");
+					printf ("\n\nPrograma finalizado, pulse cualquier tecla seguida de intro para salir\n");
+					fflush(stdin);
+					scanf ("%c");
 					return -1;
 				}
 				printf ("	Fichero abierto correctamente.\n");
@@ -86,7 +89,7 @@ int main (){
 				rewind (fichero1);
 				//Asignación dinámica de memoria para crear un vector de la misma longitud que el fichero
 				txtASCII = malloc (sizeof(char)*contador);
-				printf ("\n \nIntroduce la ruta de acceso.\
+				printf ("\n \nIntroduce la ruta de acceso para el fichero de salida.\
 						\n	ADVERTENCIA: si eliges un archivo que ya existe se sobreescribira y se perderan los datos guardados en el.\n\n	");
 				//En el futuro puede añadirse una función que intente abrir el archivo especificado
 				//y que si existe lo advierta y de opción a cambiar el nombre de archivo si se desea
@@ -96,7 +99,11 @@ int main (){
 				system("clear");				
 				fichero2 = fopen (out_file, "w");
 				if (fichero2 == NULL){ //If error creacion de fichero encriptado
-					printf ("Error en la apertura/creacion del fichero de salida.\n");
+					printf ("\tError en la apertura del fichero.\n");
+					printf ("\n\nPrograma finalizado, pulse cualquier tecla seguida de intro para salir\n");
+					fflush(stdin);
+					scanf ("%c");
+					return -1;
 				}
 				printf ("\nEncriptando y guardando en el archivo de salida\n");
 				i=0;
@@ -138,7 +145,10 @@ int main (){
 				printf ("\nAbriendo el fichero de lectura %s\n", in_file);
 				fichero1 = fopen (in_file, "r");
 				if (fichero1==NULL){ //If error apertura de archivo a desencriptar
-					printf ("	Error en la apertura del fichero.\n");
+					printf ("\tError en la apertura del fichero.\n");
+					printf ("\n\nPrograma finalizado, pulse cualquier tecla seguida de intro para salir\n");
+					fflush(stdin);
+					scanf ("%c");
 					return -1;
 				}
 				printf ("	Fichero abierto correctamente.\n");
@@ -149,7 +159,7 @@ int main (){
 				rewind (fichero1);
 				//Asignación dinámica de memoria para crear un vector de la misma longitud que el fichero
 				txtASCII = malloc (sizeof(char)*contador);
-				printf ("\nIntroduce la ruta de acceso.\
+				printf ("\nIntroduce la ruta de acceso del fichero de salida.\
 						\n	ADVERTENCIA: si eliges un archivo que ya existe se sobreescribira y se perderan los datos guardados en el.\n\n	");
 				fflush(stdin);
 				scanf ("%[^\n]s", out_file);
@@ -157,7 +167,11 @@ int main (){
 				system("clear");
 				fichero2 = fopen (out_file, "w");
 				if (fichero2 == NULL){ //If error creacion de fichero desencriptado
-					printf ("	Error en la apertura/creacion del fichero de salida.\n");
+					printf ("\tError en la apertura del fichero.\n");
+					printf ("\n\nPrograma finalizado, pulse cualquier tecla seguida de intro para salir\n");
+					fflush(stdin);
+					scanf ("%c");
+					return -1;
 				}
 				printf ("\nDesencriptando y guardando en el archivo de salida\n");
 				i=0;

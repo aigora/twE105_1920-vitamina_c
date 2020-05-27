@@ -7,7 +7,7 @@
 #include "usuarios.h"
 int inicio_normal (){ //Prueba. Todo lo que aquí aparece deberá aparecer en el programa principal. (El resto son funciones que se incluirán en la librería).
 	FILE *users_file;
-	int ultimo_registro, intentos = 0;
+	int ultimo_registro, intentos = 0, i;
 	//printf ("Esta parte del programa solo es una prueba y se integrara en el resto del programa en forma de libreria.\n");
 	users_file = fopen ("usuarios.txt", "r"); //Abro en formato de lectura porque lo primero es
 	usuarios lista [MAX_USERS]={0}; //Crea el vector en el que almacenar los datos y borra todo lo que haya.
@@ -18,6 +18,8 @@ int inicio_normal (){ //Prueba. Todo lo que aquí aparece deberá aparecer en el p
 	}
 	fclose (users_file);
 	printf ("Sesion iniciada correctamente, accediendo al programa...");
+	for (i=0;i<40000;i++)
+		printf (" %c", 8);
 	return 0;
 }
 
