@@ -19,8 +19,6 @@ int inicio_normal (char password[]){ //Prueba. Todo lo que aquí aparece deberá
 	}
 	fclose (users_file);
 	printf ("Sesion iniciada correctamente, accediendo al programa...\n\n\n");
-	for (i=0;i<100;i++)
-		printf ("%c", 219);
 	printf ("\n\n");
 	return 0;
 }

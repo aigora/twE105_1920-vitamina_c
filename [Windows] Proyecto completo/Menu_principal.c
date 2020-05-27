@@ -26,6 +26,8 @@ int main (){
 	int U,D,C,comodin2[11], comodin3[11], comodin4[11];
 	char in_file[150], out_file[150], send_file[150];
 	
+	funcion_espera();
+	//graf_error("Mensaje de error de prueba");
 	system ("cls");
 	printf ("\t\t\t\t----------VITAMINA C----------\n");
 	printf ("\t\t\t\t______________________________\n\n\n");

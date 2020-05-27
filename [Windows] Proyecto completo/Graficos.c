@@ -96,3 +96,35 @@ void progressbar2 (int progreso){
 	}
 	printf ("\t %i%c", progreso, 37);
 }
+
+void funcion_espera (){
+	int i, j, k;
+	for (k=0;k<3;k++){
+		for (i=0;i<70;i++){
+			for (j=0;j<30;j++){
+				printf ("%c%c", 220, 8);
+			}
+			printf (".");
+		}
+		for (i=0;i<70;i++){
+			for (j=0;j<60;j++){
+				printf ("%c%c", 220, 8);
+			}
+			printf ("%c%c", 8, 8);
+		}
+		for (i=0;i<71;i++){
+			for (j=0;j<30;j++){
+				printf ("%c%c", 220, 8);
+			}
+				printf (" ");
+		}
+		for (i=0;i<71;i++)
+			printf("%c", 8);
+	}
+}
+
+void graf_error (char mensaje_de_error[]){
+	system ("cls");
+	printf ("Se ha producido un error\n");
+	printf ("%s", g_error);
+}
