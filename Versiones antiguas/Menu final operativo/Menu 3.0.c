@@ -69,7 +69,10 @@ int main (){
 				printf ("\n Abriendo el fichero de lectura %s\n", in_file);
 				fichero1 = fopen (in_file, "r");
 				if (fichero1==NULL){ //If error apertura de archivo a encriptar
-					printf ("Error en la apertura del fichero.\n");
+					printf ("\tError en la apertura del fichero.\n");
+					printf ("\n\nPrograma finalizado, pulse cualquier tecla seguida de intro para salir\n");
+					fflush(stdin);
+					scanf ("%c");
 					return -1;
 				}
 				printf ("Fichero abierto correctamente.\n");
@@ -89,7 +92,11 @@ int main (){
 				scanf ("%[^\n]s", out_file);
 				fichero2 = fopen (out_file, "w");
 				if (fichero2 == NULL){ //If error creacion de fichero encriptado
-					printf ("Error en la apertura/creacion del fichero de salida.\n");
+					printf ("\tError en la apertura del fichero.\n");
+					printf ("\n\nPrograma finalizado, pulse cualquier tecla seguida de intro para salir\n");
+					fflush(stdin);
+					scanf ("%c");
+					return -1;
 				}
 				printf ("Encriptando y guardando en el archivo de salida\n");
 				i=0;
@@ -128,7 +135,10 @@ int main (){
 				printf ("\n Abriendo el fichero de lectura %s\n", in_file);
 				fichero1 = fopen (in_file, "r");
 				if (fichero1==NULL){ //If error apertura de archivo a desencriptar
-					printf ("Error en la apertura del fichero.\n");
+					printf ("\tError en la apertura del fichero.\n");
+					printf ("\n\nPrograma finalizado, pulse cualquier tecla seguida de intro para salir\n");
+					fflush(stdin);
+					scanf ("%c");
 					return -1;
 				}
 				printf ("Fichero abierto correctamente.\n");
@@ -146,7 +156,11 @@ int main (){
 				scanf ("%[^\n]s", out_file);
 				fichero2 = fopen (out_file, "w");
 				if (fichero2 == NULL){ //If error creacion de fichero desencriptado
-					printf ("Error en la apertura/creacion del fichero de salida.\n");
+					printf ("\tError en la apertura del fichero.\n");
+					printf ("\n\nPrograma finalizado, pulse cualquier tecla seguida de intro para salir\n");
+					fflush(stdin);
+					scanf ("%c");
+					return -1;
 				}
 				printf ("Desencriptando y guardando en el archivo de salida\n");
 				i=0;
