@@ -9,6 +9,7 @@
 
 #include "Serial.h"
 #include "Graficos.h"
+
 /* Esta parte se ha incluido directamente en el programa principal
 void Serial_search (Serial *puertoserie){ //Función con las opciones de búsqueda del puerto serie (La función que
 //realmente establece la conexión es Serial_begin).
@@ -147,14 +148,14 @@ _Bool Serial_write (Serial *link, char *mensaje){
 		return 0;
 	}
 	else{
-		int i, j;
+		unsigned int i, j;
 		int porcentaje [10000];
 		porcentaje [0] = 0;
 		startprogressbar("Enviando...");
 		for (i=0;i<10000;i++){
 			porcentaje [i] = calcularprogreso(i, 10000);
 			progressbar(porcentaje, i);
-			for (j=0;j<50000;j++){} //Sirve a modo de delay para probar el código - Ajustar el valor para obtener la velocidad deseada en la prueba
+			for (j=0;j<300000;j++){} //Sirve a modo de delay para probar el código - Ajustar el valor para obtener la velocidad deseada en la prueba
 		}
 		endprogressbar(1);
 	}

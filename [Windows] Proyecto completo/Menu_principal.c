@@ -3,13 +3,14 @@
 #include "function.h"
 #include "Usuarios.h"
 #include "Serial.h"
-#include "Graficos.h"
+//#include "Graficos.h"
 #define MAX_ENVIO 90 //El valor máximo que acepta Arduino está especificado en el programa de Arduino
 					//dicho máximo es ligeramente superior al utilizado aquí
 int main (){
+	graf_logo();
 	inicio_normal();
 	char olvidalo; //Para funciones en la que se necesita leer un dato pero que no vamos a utilizar
-	int x, j1, bloque_no=0;
+	int x, j1, bloque_no=0, longitud_mensaje;
 	Serial puertoserie;
 	FILE *fichero;
 	FILE *fichero1;
@@ -28,27 +29,20 @@ int main (){
 	
 	funcion_espera();
 	//graf_error("Mensaje de error de prueba");
-	system ("cls");
-	printf ("\t\t\t\t----------VITAMINA C----------\n");
-	printf ("\t\t\t\t______________________________\n\n\n");
-	printf ("\t\t\t     version completa - solo para Windows\n\n\n");
-	printf ("\n OPCIONES:\n1.Encriptar un archivo.\n2.Desencriptar un archivo.\
+	graf_logo();
+	printf ("\n\n OPCIONES:\n1.Encriptar un archivo.\n2.Desencriptar un archivo.\
 	\n3.Enviar un archivo por radio - Se requiere Arduino y haber realizado primero la conexion (ver opcion 4)\
 	\n4.Establecer conexion con Arduino - Se requiere Arduino\n5.Salir\n\n");
 	fflush(stdin); //Limpia el buffer de entrada
 	scanf("%i",&x);
 	switch (x){
 			case 1:
-				system ("cls");
-				printf ("\t\t\t\t----------VITAMINA C----------\n");
-				printf ("\t\t\t\t______________________________\n\n\n");
+				graf_logo();
 				printf ("Introduce la clave de encriptado:\n\t\t");
 				fpswrd (pswrd); //FUNCIÓN (Contraseña).
 				
 				//Simula "tapar" la contraseña con asteriscos
-        		system ("cls");
-				printf ("\t\t\t\t----------VITAMINA C----------\n");
-				printf ("\t\t\t\t______________________________\n\n\n");
+        		graf_logo();
 				printf ("Introduce la clave de encriptado:\n\t\t");
 				printf ("***********"); 
 				while (i<12){ //ASCII Y UDC
@@ -95,6 +89,7 @@ int main (){
 				fichero1 = fopen (in_file, "r");
 				if (fichero1==NULL){ //If error apertura de archivo a encriptar
 					printf ("\tError en la apertura del fichero.\n");
+					graf_error("Se ha producido un error con la lectura del fichero.\nReinicia el programa.");
 					return -1;
 				}
 				printf ("\tFichero abierto correctamente.\n");
@@ -148,16 +143,12 @@ int main (){
 			break;
 			
 			case 2:
-				system ("cls");
-				printf ("\t\t\t\t----------VITAMINA C----------\n");
-				printf ("\t\t\t\t______________________________\n\n\n");
+				graf_logo();
 				printf ("Introduce la clave de encriptado:\n\t\t");
 				fpswrd (pswrd); //FUNCIÓN (Contraseña).
 				
 				//Simula "tapar" la contraseña con asteriscos
-        		system ("cls");
-				printf ("\t\t\t\t----------VITAMINA C----------\n");
-				printf ("\t\t\t\t______________________________\n\n\n");
+        		graf_logo();
 				printf ("Introduce la clave de encriptado:\n\t\t");
 				printf ("***********"); 
 				while (i<12){ //ASCII Y UDC
@@ -202,7 +193,7 @@ int main (){
 				printf ("\n Abriendo el fichero de lectura %s\n", in_file);
 				fichero1 = fopen (in_file, "r");
 				if (fichero1==NULL){ //If error apertura de archivo a desencriptar
-					printf ("Error en la apertura del fichero.\n");
+					graf_error("Error en la apertura del fichero");
 					return -1;
 				}
 				printf ("Fichero abierto correctamente.\n");
@@ -220,7 +211,7 @@ int main (){
 				scanf ("%[^\n]s", out_file);
 				fichero2 = fopen (out_file, "w");
 				if (fichero2 == NULL){ //If error creacion de fichero desencriptado
-					printf ("Error en la apertura/creacion del fichero de salida.\n");
+					graf_error("Error en la apertura del fichero de destino");
 				}
 				printf ("Desencriptando y guardando en el archivo de salida\n");
 				i=0;
@@ -251,7 +242,7 @@ int main (){
 				printf ("\nAccediendo a %s...\n\n", send_file);
 				fichero = fopen (send_file, "r"); //Abro el fichero en modo de lectura
 				if (fichero==NULL){
-					printf ("Ohh! Se ha producido un error en la apertura del fichero. Reinicia el programa y asegurate de introducir bien la ruta de acceso\
+					graf_error ("Ohh! Se ha producido un error en la apertura del fichero. Reinicia el programa y asegurate de introducir bien la ruta de acceso\
 					\n\n\n\n-------------------------------------------------\
 					\nPulsa cualquier tecla + intro para salir");
 					fflush (stdin);
@@ -262,24 +253,30 @@ int main (){
 					printf ("Fichero abierto correctamente\n\n");
 				}
 				
+				//Compruebo la longitud del mensaje, con el fin de informar al usuario del tiempo que puede tardar o del número de bloques que deben enviarse
+				longitud_mensaje=0;
+				while (fscanf(fichero, "%c", &olvidalo)!=EOF)
+					longitud_mensaje++;
+				printf ("El mensaje tiene %i caracteres.\nVamos a dividirlo en %i bloques para enviarlo.\n", longitud_mensaje, (longitud_mensaje/90)+1);
 				//Una vez el fichero ha sido abierto, hay que leerlo y dividirlo en bloques que se deben ir enviando poco a poco
 				//(el tiempo de espera entre el envio de bloques consecutivos esta incluido en la libreria serial)
 				//Durante la espera se mostrará al usuario una barra de progreso. (en realidad representa el tiempo de espera y no el de envio, el envío es instantáneo)
 				
 				//Hago una asignación de memoria para hacer hueco al puntero que va a ir almacenando todos los caracteres de cada bloque
-				mensaje_salida = malloc(sizeof(char)*MAX_ENVIO+5); //Hago hueco de sobra
+				mensaje_salida = malloc(sizeof(char)*MAX_ENVIO+2); //Dejo dos huecos extra para los signos del final de cada bloque
 				unsigned int cont=0;
+				rewind(fichero);
 				while (fscanf(fichero, "%c", (mensaje_salida+cont))!=EOF){
 					//printf ("%c", *(mensaje_salida+cont));
 					cont++;
 					if (cont==(MAX_ENVIO-3)){
 						cont=0;
 						bloque_no++;
-						printf ("Enviando el bloque no. %i", bloque_no);
+						printf ("Enviando el bloque no. %i de %i bloque(s)", bloque_no, (longitud_mensaje/90)+1);
 						*(mensaje_salida+(MAX_ENVIO-2))='#';
 						*(mensaje_salida+(MAX_ENVIO-1))='·';
 						if (!Serial_write(&puertoserie, mensaje_salida)){
-							printf ("Se ha producido un error con el envio");
+							graf_error ("Se ha producido un error con el envio");
 						}
 						else{
 							printf ("El envio se ha realizado correctamente");
@@ -381,11 +378,12 @@ int main (){
 				break;
 			case 5:
 				printf("Muy bien, hasta la proxima\n");
+				funcion_espera();
 				continuar =1;
 				break;
 				
 		    default:
-		    	printf("Parece que el viaje de regreso desde Vormir no le ha sentado muy bien ...");
+		    	printf("Revisa tu seleccion...");
 		    	fflush(stdin);
 				printf("\n 		Desea continuar? No [N] - Si [Cualquier tecla]\n");
 				scanf("%c", &respuesta);

@@ -6,6 +6,7 @@
  */
 #include "usuarios.h"
 #include <stdio.h>
+#include "Graficos.h"
 int inicio_normal (char password[]){ //Prueba. Todo lo que aquí aparece deberá aparecer en el programa principal. (El resto son funciones que se incluirán en la librería).
 	FILE *users_file;
 	int i;
@@ -110,8 +111,6 @@ _Bool iniciar_sesion (FILE *fichero, usuarios usuarios_existentes[], int ultimo_
 	int opcion, i;
 	usuarios temp = {0};
 	_Bool salida = 0;
-	printf ("\t\t\t\t-------VITAMINA C-------\n");
-	printf ("\t\t\t\t----Version completa----\n");
 	printf("\n\n\n\n\n\n\t\tINICIO DE SESION\n\n\tSeleccione una opcion:\n");
 	printf ("\t1. - Iniciar sesion como un usuario ya registrado.\n\t2. - Crear un nuevo usuario. (Limite de usuarios 100).\n");
 	scanf ("%i", &opcion);
@@ -142,8 +141,8 @@ _Bool iniciar_sesion (FILE *fichero, usuarios usuarios_existentes[], int ultimo_
 void espera (int intentos){
 	int i = 0;
 	printf ("Espere para poder volver a intentarlo.\n");
-	for (i=0;i<5000*intentos*intentos*intentos;i++) { //El tiempo de espera es exponencial
-		printf (" %c", 8); //8 es el retroceso en la tabla ASCII. De esta forma se pierde tiempo pero no se llena la pantalla de nuevos carácteres
+	for (i=0;i<intentos*intentos;i++){ //El tiempo de espera es exponencial
+		funcion_espera();
 	}
 	system("cls");
 }
