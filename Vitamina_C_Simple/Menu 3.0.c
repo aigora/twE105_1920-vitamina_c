@@ -1,64 +1,27 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "function.h"
+#include"grafikeame.h"
 #include "usuarios.h"
 int main (){
-	inicio_normal();
-	int x;
-	FILE *fichero1;
-	FILE *fichero2;
-	char *txtASCII;
-	char respuesta;
-	_Bool continuar = 0;
-	system("cls");
-	system("clear");
-
-	while (continuar==0){//El programa se ejecuta indefinidamente hasta que el usuario decide salir
-		printf("\n\n 			----------BIENVENIDO A VITAMINA C----------\n ");
-		printf("\nIntroduzca la password (recomendamos una password de 12 caracteres para un mejor funcionamiento): \n	");
-		char c;
+	char c;
 	char pswrd[12]; //Array de 13 caracteres
 	int iter=0, i=0, j=0, x=0, y=0, z=0, contador=0;
 	int pswrdASCII[11], X[11], Y[11], Z[11],T[11];
 	int U,D,C,comodin2[11], comodin3[11], comodin4[11];
 	char in_file[150], out_file[150]; 
-	
-	fpswrd (pswrd); //FUNCIÓN (Contraseña).
-        			  
-	while (i<12){ //ASCII Y UDC
-		Char_a_ASCII(pswrd,pswrdASCII); //FUNCIÓN (Pasar la contraseña de caracteres a ASCII)   
-		UDC (pswrdASCII, X, Y, Z); //FUNCIÓN (Pasamos ASCII a unidades,decenas y centenas)
-	i++;
-    }
-	
-	ASCII_a_01(X,Y,Z);//FUNCIÓN (X Y Z a binario)
-	printf("\n");
+	inicio_normal();
+	FILE *fichero1;
+	FILE *fichero2;
+	char *txtASCII;
+	char respuesta;
+	_Bool continuar = 0;
+	funcion_espera();
+	graf_logo();
 
-	while(iter<6){ //Iteración para hash
-    	i=0;
-	    while(i<12){ //vamos a crear un ultimo arrai que obtenga su valor dependiendo de comparar X,Y y Z; teniendo en cuenta permutaciones positivas y negativas
-	    	if(i%2==0){
-	    		if(X[i]==Z[i]){
-	    			T[i]=1;
-				}else{
-					T[i]=0;
-				}
-	    	}else{
-	    		if(Y[i]==Z[i]){
-	    			T[i]=1;
-					}else{
-					T[i]=0;
-				}
-			}
-	    i++;
-		}
+	while (continuar==0){//El programa se ejecuta indefinidamente hasta que el usuario decide salir
+		graf_logo();
 
-		
-		Func_Desplz(X,Y,Z,T);//(Valores de X en Y, Y en Z, Z en T y T en X)
-
-	i=0;
-	iter++;
-	}
 	printf ("\nOPCIONES:\n	1.Encriptar un archivo.\n	2.Desencriptar un archivo.\n	3.Salir.\n\n");
 	scanf("%i",&x);
 	system("cls");
@@ -66,6 +29,45 @@ int main (){
 	switch (x){
 			case 1:
 				printf("\n \nExcelente, comencemos con la encriptacion...\n");
+				printf("\nIntroduzca la password (recomendamos una password de 12 caracteres para un mejor funcionamiento): \n	");				
+				fpswrd (pswrd); //FUNCIÓN (Contraseña).
+			        			  
+				while (i<12){ //ASCII Y UDC
+					Char_a_ASCII(pswrd,pswrdASCII); //FUNCIÓN (Pasar la contraseña de caracteres a ASCII)   
+					UDC (pswrdASCII, X, Y, Z); //FUNCIÓN (Pasamos ASCII a unidades,decenas y centenas)
+					i++;
+			    }
+				
+				ASCII_a_01(X,Y,Z);//FUNCIÓN (X Y Z a binario)
+				printf("\n");
+			
+				while(iter<6){ //Iteración para hash
+			    	i=0;
+				    while(i<12){ //vamos a crear un ultimo arrai que obtenga su valor dependiendo de comparar X,Y y Z; teniendo en cuenta permutaciones positivas y negativas
+				    	if(i%2==0){
+				    		if(X[i]==Z[i]){
+				    			T[i]=1;
+							}else{
+								T[i]=0;
+							}
+				    	}else{
+				    		if(Y[i]==Z[i]){
+				    			T[i]=1;
+								}else{
+								T[i]=0;
+							}
+						}
+				    i++;
+					}
+			
+					
+					Func_Desplz(X,Y,Z,T);//(Valores de X en Y, Y en Z, Z en T y T en X)
+			
+				i=0;
+				iter++;
+				}
+				system("cls");
+				system("clear");
 				printf ("\nIntroduce la ruta de acceso del archivo .txt que deseas encriptar.\
 				\n[Si el archivo se encuentra en la misma carpeta que este programa solo tendras que poner el nombre del archivo.]\n \n	");
 				fflush (stdin); //Limpio el buffer de entrada
@@ -136,6 +138,45 @@ int main (){
 			break;
 			case 2:
 				printf("\n\nExcelente, vamos a ver de que trata ese mensaje...\n");
+				printf("\nIntroduzca la password (recomendamos una password de 12 caracteres para un mejor funcionamiento): \n	");	
+				fpswrd (pswrd); //FUNCIÓN (Contraseña).
+			        			  
+				while (i<12){ //ASCII Y UDC
+					Char_a_ASCII(pswrd,pswrdASCII); //FUNCIÓN (Pasar la contraseña de caracteres a ASCII)   
+					UDC (pswrdASCII, X, Y, Z); //FUNCIÓN (Pasamos ASCII a unidades,decenas y centenas)
+				i++;
+			    }
+				
+				ASCII_a_01(X,Y,Z);//FUNCIÓN (X Y Z a binario)
+				printf("\n");
+			
+				while(iter<6){ //Iteración para hash
+			    	i=0;
+				    while(i<12){ //vamos a crear un ultimo arrai que obtenga su valor dependiendo de comparar X,Y y Z; teniendo en cuenta permutaciones positivas y negativas
+				    	if(i%2==0){
+				    		if(X[i]==Z[i]){
+				    			T[i]=1;
+							}else{
+								T[i]=0;
+							}
+				    	}else{
+				    		if(Y[i]==Z[i]){
+				    			T[i]=1;
+								}else{
+								T[i]=0;
+							}
+						}
+				    i++;
+					}
+			
+					
+					Func_Desplz(X,Y,Z,T);//(Valores de X en Y, Y en Z, Z en T y T en X)
+			
+				i=0;
+				iter++;
+				}
+				system("cls");
+				system("clear");
 				printf ("\nIntroduce la ruta de acceso del archivo .txt que deseas desencriptar.\
 				\n[Si el archivo se encuentra en la misma carpeta que este programa solo tendras que poner el nombre del archivo.]\n \n	");
 				fflush (stdin); //Limpio el buffer de entrada
