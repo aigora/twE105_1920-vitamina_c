@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "function.h"
@@ -77,7 +78,8 @@ int main (){
 				printf ("\nAbriendo el fichero de lectura %s\n", in_file);
 				fichero1 = fopen (in_file, "r");
 				if (fichero1==NULL){ //If error apertura de archivo a encriptar
-					printf ("\tError en la apertura del fichero.\n");
+					graf_error("Error en la apertura del fichero.");
+					//printf ("\tError en la apertura del fichero.\n");
 					printf ("\n\nPrograma finalizado, pulse cualquier tecla seguida de intro para salir\n");
 					fflush(stdin);
 					scanf ("%c");
@@ -101,7 +103,7 @@ int main (){
 				system("clear");				
 				fichero2 = fopen (out_file, "w");
 				if (fichero2 == NULL){ //If error creacion de fichero encriptado
-					printf ("\tError en la apertura del fichero.\n");
+				graf_error("Error en la apertura del fichero.");
 					printf ("\n\nPrograma finalizado, pulse cualquier tecla seguida de intro para salir\n");
 					fflush(stdin);
 					scanf ("%c");
@@ -186,7 +188,7 @@ int main (){
 				printf ("\nAbriendo el fichero de lectura %s\n", in_file);
 				fichero1 = fopen (in_file, "r");
 				if (fichero1==NULL){ //If error apertura de archivo a desencriptar
-					printf ("\tError en la apertura del fichero.\n");
+					graf_error("Error en la apertura del fichero.");
 					printf ("\n\nPrograma finalizado, pulse cualquier tecla seguida de intro para salir\n");
 					fflush(stdin);
 					scanf ("%c");
@@ -208,7 +210,7 @@ int main (){
 				system("clear");
 				fichero2 = fopen (out_file, "w");
 				if (fichero2 == NULL){ //If error creacion de fichero desencriptado
-					printf ("\tError en la apertura del fichero.\n");
+				graf_error("Error en la apertura del fichero.");
 					printf ("\n\nPrograma finalizado, pulse cualquier tecla seguida de intro para salir\n");
 					fflush(stdin);
 					scanf ("%c");

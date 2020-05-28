@@ -3,6 +3,7 @@
 #define TAM_USER 30
 #define TAM_PASSWORD 30
 #include<stdio.h>
+#include "grafikeame.h"
 typedef struct{
 	char user[TAM_USER];
 	char password[TAM_PASSWORD];

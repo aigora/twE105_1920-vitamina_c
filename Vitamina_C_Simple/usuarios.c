@@ -4,6 +4,7 @@
  * guardar los datos de los usuarios existentes en un fichero
  * (idea de futuro: encriptar el archivo de los nombres de usuario y contraseña utilizando el propio encriptador y con una contraseña fija que solo conoce el programa).
  */
+#include "grafikeame.h"
 #include "usuarios.h"
 int inicio_normal (){ //Prueba. Todo lo que aquí aparece deberá aparecer en el programa principal. (El resto son funciones que se incluirán en la librería).
 	FILE *users_file;
@@ -159,9 +160,11 @@ _Bool iniciar_sesion (FILE *fichero, usuarios usuarios_existentes[], int ultimo_
 void espera (int intentos){
 	int i = 0;
 	printf ("Espere para poder volver a intentarlo.\n");
-	for (i=0;i<3000*intentos*intentos*intentos;i++) { //El tiempo de espera es exponencial
-		printf (" %c", 8); //8 es el retroceso en la tabla ASCII. De esta forma se pierde tiempo pero no se llena la pantalla de nuevos carácteres
+	for (i=0;i<intentos*intentos;i++) { //El tiempo de espera es exponencial
+		funcion_espera ();
 	}
+	system("cls");
+	system("clear");
 	printf ("\n-------------------\n");
 }
 
