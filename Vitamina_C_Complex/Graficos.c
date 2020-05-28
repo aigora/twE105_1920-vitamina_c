@@ -21,7 +21,7 @@ int calculaprogreso (int proceso, int totaldeprocesos); //Calcula el progreso re
 void progressbar2 (int progreso); //Segundo tipo de barra de progreso. Recibe como argumento el porcentaje de progreso
 			*/
 #include "Graficos.h"					  
-//#include <stdio.h>							  
+#include <stdio.h>							  
 								  
 								  
 //TODO EL MAIN ES UNA PRUEBA, UN EJEMPLO
