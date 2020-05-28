@@ -100,6 +100,11 @@ int main (){
 				rewind (fichero1);
 				//Asignación dinámica de memoria para crear un vector de la misma longitud que el fichero
 				txtASCII = malloc (sizeof(char)*contador);
+				if(txtASCII==NULL)
+				{
+					graf_error("Error en la asignacion de memoria");
+					exit(-1);
+				}
 				printf ("Crear/abrir el fichero de salida:\
 						\nIntroduce la ruta de acceso.\
 						\nADVERTENCIA: si eliges un archivo que ya existe se sobreescribira y se perderan los datos guardados en el.\n");
@@ -109,7 +114,8 @@ int main (){
 				scanf ("%[^\n]s", out_file);
 				fichero2 = fopen (out_file, "w");
 				if (fichero2 == NULL){ //If error creacion de fichero encriptado
-					printf ("Error en la apertura/creacion del fichero de salida.\n");
+				    graf_error("Error en la apertura del archivo");
+					return -1;
 				}
 				printf ("Encriptando y guardando en el archivo de salida\n");
 				i=0;
@@ -204,6 +210,11 @@ int main (){
 				rewind (fichero1);
 				//Asignación dinámica de memoria para crear un vector de la misma longitud que el fichero
 				txtASCII = malloc (sizeof(char)*contador);
+				if(txtASCII==NULL)
+				{
+					graf_error("Error en la asignacion de memoria");
+					exit(-1);
+				}
 				printf ("Crear/abrir el fichero de salida:\
 						\nIntroduce la ruta de acceso.\
 						\nADVERTENCIA: si eliges un archivo que ya existe se sobreescribira y se perderan los datos guardados en el.\n");
@@ -212,6 +223,7 @@ int main (){
 				fichero2 = fopen (out_file, "w");
 				if (fichero2 == NULL){ //If error creacion de fichero desencriptado
 					graf_error("Error en la apertura del fichero de destino");
+					return -1;
 				}
 				printf ("Desencriptando y guardando en el archivo de salida\n");
 				i=0;
@@ -245,8 +257,6 @@ int main (){
 					graf_error ("Ohh! Se ha producido un error en la apertura del fichero. Reinicia el programa y asegurate de introducir bien la ruta de acceso\
 					\n\n\n\n-------------------------------------------------\
 					\nPulsa cualquier tecla + intro para salir");
-					fflush (stdin);
-					scanf ("%c", &olvidalo); //Para cuando solo se ejecuta un archivo .exe que no se cierre la consola sin informar al usuario
 					return -1;
 				}
 				else{
@@ -263,7 +273,12 @@ int main (){
 				//Durante la espera se mostrará al usuario una barra de progreso. (en realidad representa el tiempo de espera y no el de envio, el envío es instantáneo)
 				
 				//Hago una asignación de memoria para hacer hueco al puntero que va a ir almacenando todos los caracteres de cada bloque
-				mensaje_salida = malloc(sizeof(char)*MAX_ENVIO+2); //Dejo dos huecos extra para los signos del final de cada bloque
+				mensaje_salida = malloc(sizeof(char)*MAX_ENVIO+2);//Dejo dos huecos extra para los signos del final de cada bloque
+				if(mensaje_salida==NULL)
+				{
+					graf_error("Error en la asignacion de memoria");
+					exit(-1);
+				} 
 				unsigned int cont=0;
 				rewind(fichero);
 				while (fscanf(fichero, "%c", (mensaje_salida+cont))!=EOF){
@@ -294,6 +309,8 @@ int main (){
 							printf ("El envio se ha realizado correctamente");
 						}
 				printf ("\nLectura finalizada\n");
+				fclose(fichero);
+				free(mensaje_salida);
 			break;
 			
 			case 4:
