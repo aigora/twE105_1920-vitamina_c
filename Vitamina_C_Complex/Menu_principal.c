@@ -4,8 +4,8 @@
 #include "Usuarios.h"
 #include "Serial.h"
 //#include "Graficos.h"
-#define MAX_ENVIO 90 //El valor m·ximo que acepta Arduino est· especificado en el programa de Arduino
-					//dicho m·ximo es ligeramente superior al utilizado aquÌ
+#define MAX_ENVIO 90 //El valor m√°ximo que acepta Arduino est√° especificado en el programa de Arduino
+					//dicho m√°ximo es ligeramente superior al utilizado aqu√≠
 int main (){
 	graf_logo();
 	inicio_normal();
@@ -39,22 +39,22 @@ int main (){
 			case 1:
 				graf_logo();
 				printf ("Introduce la clave de encriptado:\n\t\t");
-				fpswrd (pswrd); //FUNCI”N (ContraseÒa).
+				fpswrd (pswrd); //FUNCI√ìN (Contrase√±a).
 				
-				//Simula "tapar" la contraseÒa con asteriscos
+				//Simula "tapar" la contrase√±a con asteriscos
         		graf_logo();
 				printf ("Introduce la clave de encriptado:\n\t\t");
 				printf ("***********"); 
 				while (i<12){ //ASCII Y UDC
-					Char_a_ASCII(pswrd,pswrdASCII); //FUNCI”N (Pasar la contraseÒa de caracteres a ASCII)   
-					UDC (pswrdASCII, X, Y, Z); //FUNCI”N (Pasamos ASCII a unidades,decenas y centenas)
+					Char_a_ASCII(pswrd,pswrdASCII); //FUNCI√ìN (Pasar la contrase√±a de caracteres a ASCII)   
+					UDC (pswrdASCII, X, Y, Z); //FUNCI√ìN (Pasamos ASCII a unidades,decenas y centenas)
 					i++;
     			}
 				
-				ASCII_a_01(X,Y,Z);//FUNCI”N (X Y Z a binario)
+				ASCII_a_01(X,Y,Z);//FUNCI√ìN (X Y Z a binario)
 				printf("\n");
 			
-				while(iter<6){ //IteraciÛn para hash
+				while(iter<6){ //Iteraci√≥n para hash
     				i=0;
 	    			while(i<12){ //vamos a crear un ultimo array que obtenga su valor dependiendo de comparar X,Y y Z; teniendo en cuenta permutaciones positivas y negativas
 	    				if(i%2==0){
@@ -78,7 +78,7 @@ int main (){
 				}
 				
 				
-				//AquÌ se comienza a trabajar con el archivo realmente. Hasta ahora era el manejo de la contraseÒa y la creaciÛn del hash
+				//Aqu√≠ se comienza a trabajar con el archivo realmente. Hasta ahora era el manejo de la contrase√±a y la creaci√≥n del hash
 				
 				printf("Excelente,comencemos con la encriptacion\n");
 				printf ("\nIntroduce la ruta de acceso del archivo .txt que deseas encriptar.\
@@ -93,12 +93,12 @@ int main (){
 					return -1;
 				}
 				printf ("\tFichero abierto correctamente.\n");
-				while (fscanf(fichero1, "%c", &c)!=EOF){ //while contador n∫ caracteres
+				while (fscanf(fichero1, "%c", &c)!=EOF){ //while contador n¬∫ caracteres
 				contador++;
 				}
 				printf ("\t\tEl fichero tiene %i caracteres.\n", contador);
 				rewind (fichero1);
-				//AsignaciÛn din·mica de memoria para crear un vector de la misma longitud que el fichero
+				//Asignaci√≥n din√°mica de memoria para crear un vector de la misma longitud que el fichero
 				txtASCII = malloc (sizeof(char)*contador);
 				if(txtASCII==NULL)
 				{
@@ -108,8 +108,8 @@ int main (){
 				printf ("Crear/abrir el fichero de salida:\
 						\nIntroduce la ruta de acceso.\
 						\nADVERTENCIA: si eliges un archivo que ya existe se sobreescribira y se perderan los datos guardados en el.\n");
-				//En el futuro puede aÒadirse una funciÛn que intente abrir el archivo especificado
-				//y que si existe lo advierta y de opciÛn a cambiar el nombre de archivo si se desea
+				//En el futuro puede a√±adirse una funci√≥n que intente abrir el archivo especificado
+				//y que si existe lo advierta y de opci√≥n a cambiar el nombre de archivo si se desea
 				fflush(stdin);
 				scanf ("%[^\n]s", out_file);
 				fichero2 = fopen (out_file, "w");
@@ -120,7 +120,7 @@ int main (){
 				printf ("Encriptando y guardando en el archivo de salida\n");
 				i=0;
 				while (fscanf(fichero1, "%c", (txtASCII+i))!=EOF){ //WHILE ARCHIVO+=HASH 
-					//AÒadir el hash y
+					//A√±adir el hash y
 					//Operaciones para que no exceda los valores permitidos
 					//c1 = c+1; //Con las debidas operaciones, esto es temporal
 					if (j==12)
@@ -151,22 +151,22 @@ int main (){
 			case 2:
 				graf_logo();
 				printf ("Introduce la clave de encriptado:\n\t\t");
-				fpswrd (pswrd); //FUNCI”N (ContraseÒa).
+				fpswrd (pswrd); //FUNCI√ìN (Contrase√±a).
 				
-				//Simula "tapar" la contraseÒa con asteriscos
+				//Simula "tapar" la contrase√±a con asteriscos
         		graf_logo();
 				printf ("Introduce la clave de encriptado:\n\t\t");
 				printf ("***********"); 
 				while (i<12){ //ASCII Y UDC
-					Char_a_ASCII(pswrd,pswrdASCII); //FUNCI”N (Pasar la contraseÒa de caracteres a ASCII)   
-					UDC (pswrdASCII, X, Y, Z); //FUNCI”N (Pasamos ASCII a unidades,decenas y centenas)
+					Char_a_ASCII(pswrd,pswrdASCII); //FUNCI√ìN (Pasar la contrase√±a de caracteres a ASCII)   
+					UDC (pswrdASCII, X, Y, Z); //FUNCI√ìN (Pasamos ASCII a unidades,decenas y centenas)
 					i++;
     			}
 				
-				ASCII_a_01(X,Y,Z);//FUNCI”N (X Y Z a binario)
+				ASCII_a_01(X,Y,Z);//FUNCI√ìN (X Y Z a binario)
 				printf("\n");
 			
-				while(iter<6){ //IteraciÛn para hash
+				while(iter<6){ //Iteraci√≥n para hash
     				i=0;
 	    			while(i<12){ //vamos a crear un ultimo array que obtenga su valor dependiendo de comparar X,Y y Z; teniendo en cuenta permutaciones positivas y negativas
 	    				if(i%2==0){
@@ -189,7 +189,7 @@ int main (){
 					iter++;
 				}
 				
-				//AquÌ se comienza a desencriptar el archivo. Hasta ahora era el manejo de la contraseÒa y la creaciÛn del hash
+				//Aqu√≠ se comienza a desencriptar el archivo. Hasta ahora era el manejo de la contrase√±a y la creaci√≥n del hash
 				printf("Excelente,vamos a ver de que trata ese mensaje...\n");
 				printf ("\nIntroduce la ruta de acceso al archivo .txt que deseas desencriptar.\
 				\n Si el archivo se encuentra en la misma carpeta que este programa solo tendras que poner el nombre del archivo.\n");
@@ -203,12 +203,12 @@ int main (){
 					return -1;
 				}
 				printf ("Fichero abierto correctamente.\n");
-				while (fscanf(fichero1, "%c", &c)!=EOF){ //while contador n∫ caracteres
+				while (fscanf(fichero1, "%c", &c)!=EOF){ //while contador n¬∫ caracteres
 					contador++;
 				}
 				printf ("El fichero tiene %i caracteres.\n", contador);
 				rewind (fichero1);
-				//AsignaciÛn din·mica de memoria para crear un vector de la misma longitud que el fichero
+				//Asignaci√≥n din√°mica de memoria para crear un vector de la misma longitud que el fichero
 				txtASCII = malloc (sizeof(char)*contador);
 				if(txtASCII==NULL)
 				{
@@ -228,7 +228,7 @@ int main (){
 				printf ("Desencriptando y guardando en el archivo de salida\n");
 				i=0;
 				while (fscanf(fichero1, "%c", (txtASCII+i))!=EOF){ //WHILE ARCHIVO+=HASH 
-					//AÒadir el hash y
+					//A√±adir el hash y
 					//Operaciones para que no exceda los valores permitidos
 					//c1 = c+1; //Con las debidas operaciones, esto es temporal
 					if (j==12)
@@ -263,16 +263,16 @@ int main (){
 					printf ("Fichero abierto correctamente\n\n");
 				}
 				
-				//Compruebo la longitud del mensaje, con el fin de informar al usuario del tiempo que puede tardar o del n˙mero de bloques que deben enviarse
+				//Compruebo la longitud del mensaje, con el fin de informar al usuario del tiempo que puede tardar o del n√∫mero de bloques que deben enviarse
 				longitud_mensaje=0;
 				while (fscanf(fichero, "%c", &olvidalo)!=EOF)
 					longitud_mensaje++;
 				printf ("El mensaje tiene %i caracteres.\nVamos a dividirlo en %i bloques para enviarlo.\n", longitud_mensaje, (longitud_mensaje/90)+1);
 				//Una vez el fichero ha sido abierto, hay que leerlo y dividirlo en bloques que se deben ir enviando poco a poco
 				//(el tiempo de espera entre el envio de bloques consecutivos esta incluido en la libreria serial)
-				//Durante la espera se mostrar· al usuario una barra de progreso. (en realidad representa el tiempo de espera y no el de envio, el envÌo es instant·neo)
+				//Durante la espera se mostrar√° al usuario una barra de progreso. (en realidad representa el tiempo de espera y no el de envio, el env√≠o es instant√°neo)
 				
-				//Hago una asignaciÛn de memoria para hacer hueco al puntero que va a ir almacenando todos los caracteres de cada bloque
+				//Hago una asignaci√≥n de memoria para hacer hueco al puntero que va a ir almacenando todos los caracteres de cada bloque
 				mensaje_salida = malloc(sizeof(char)*MAX_ENVIO+2);//Dejo dos huecos extra para los signos del final de cada bloque
 				if(mensaje_salida==NULL)
 				{
@@ -289,7 +289,7 @@ int main (){
 						bloque_no++;
 						printf ("Enviando el bloque no. %i de %i bloque(s)", bloque_no, (longitud_mensaje/90)+1);
 						*(mensaje_salida+(MAX_ENVIO-2))='#';
-						*(mensaje_salida+(MAX_ENVIO-1))='∑';
+						*(mensaje_salida+(MAX_ENVIO-1))='¬∑';
 						if (!Serial_write(&puertoserie, mensaje_salida)){
 							graf_error ("Se ha producido un error con el envio");
 						}
@@ -300,7 +300,7 @@ int main (){
 				}
 				//Ahora tengo que enviar el bloque que ha quedado al final siguiendo el mismo procedimiento que en el bucle
 				*(mensaje_salida+(MAX_ENVIO-2))='#';
-				*(mensaje_salida+(MAX_ENVIO-1))='∑';
+				*(mensaje_salida+(MAX_ENVIO-1))='¬∑';
 				printf ("Enviando el ultimo bloque del mensaje");
 				if (!Serial_write(&puertoserie, mensaje_salida)){
 							printf ("Se ha producido un error con el envio");
@@ -314,35 +314,35 @@ int main (){
 			break;
 			
 			case 4:
-				//Toda esta parte originalmente se encontraba en la librerÌa Serial.h
+				//Toda esta parte originalmente se encontraba en la librer√≠a Serial.h
 				//pero debido a los problemas pasando el puntero de unas funciones a otras desde el programa
-				//principal y desde algunas de las funciones de la librerÌa a otras, se incluye aquÌ toda esta parte:
+				//principal y desde algunas de las funciones de la librer√≠a a otras, se incluye aqu√≠ toda esta parte:
 				printf ("Accediendo al menu de configuracion...\n");
-				_Bool hay_conexion = 0; //Para dejar de buscar puertos una vez se establece conexiÛn
+				_Bool hay_conexion = 0; //Para dejar de buscar puertos una vez se establece conexi√≥n
 				_Bool salir = 0;
 				int i;
 				char COM_no [5];
-				char puertosCOM [MAX_NO_PUERTOS_COM][5]={ //5 por la longitud m·xima de los nombres de los puertos
+				char puertosCOM [MAX_NO_PUERTOS_COM][5]={ //5 por la longitud m√°xima de los nombres de los puertos
 				"COM1", "COM2", "COM3", "COM4", "COM5",
 				"COM6", "COM7", "COM8", "COM9"}; //Lista de nombres de puertos para ir probando
-    			while (salir==0){ //Hasta que no se selecciona salir o no se establece la conexiÛn no sale del bucle
+    			while (salir==0){ //Hasta que no se selecciona salir o no se establece la conexi√≥n no sale del bucle
     				printf ("\n\n\n");
     				for (i=0;i<70;i++)
-    					printf ("%c", 219); //LÌnea gruesa de separaciÛn
+    					printf ("%c", 219); //L√≠nea gruesa de separaci√≥n
     				printf ("\n\nCONEXION DEL PUERTO SERIE:\n");
 					printf ("Si conoces el puerto al que se conecta la placa,\n");
 					printf ("introducelo manualmente, ej: <<COM3>>. Si no lo conoces, puedes\n");
 					printf ("introducir un cero para que se busque automaticamente\n");
 					printf ("Para cancelar el procesoo, escribe ''salir''\n\n\n");
 					fflush(stdin); //Borra el buffer de entrada, para que siempre haya que volver
-						//a introducir una nueva opciÛn, ya que la anterior no era v·lida
+						//a introducir una nueva opci√≥n, ya que la anterior no era v√°lida
 					scanf ("%[^\n]s", COM_no);
 					if (COM_no[0]=='0'){
 						printf ("\nBuscando Arduino automaticamente...");
 						//Dependiendo del programa de Arduino que se utilice,
-						//podrÌa identificarse uno concreto o el primero que
-						//se localice, esto es el que tenga el n˙mero de puerto
-						//m·s bajo.
+						//podr√≠a identificarse uno concreto o el primero que
+						//se localice, esto es el que tenga el n√∫mero de puerto
+						//m√°s bajo.
 						for (i=0;i<MAX_NO_PUERTOS_COM;i++){
 							if (hay_conexion==0){
 								printf ("Intentando establecer conexion con el puerto %s\n", puertosCOM[i]);
@@ -367,14 +367,14 @@ int main (){
 							\nteclear manualmente la direccion.");
 						}
 					}
-					//Comprueba si el nombre del puerto es v·lido. Comprueba solo 4 car·cteres
+					//Comprueba si el nombre del puerto es v√°lido. Comprueba solo 4 car√°cteres
 					else if (COM_no[0]=='C'&&COM_no[1]=='O'&&COM_no[2]=='M'&&(COM_no[3])>='0'&&COM_no[3]<='9'){
 						printf ("\nIntentando establecer conexion con el puerto %s.\n", COM_no);
 						if (Serial_begin (&puertoserie, COM_no)==0){
 							printf ("Error estableciendo conexion!!!\n");
-							printf ("Asegurate de que esta bien conocido y de que el puerto es ");
-							printf ("el %s.\nPuedes:\nHacer una busqueda automatica\nO vovler al menu\n", COM_no);
-							COM_no==NULL;
+							printf ("Asegurate de que esta bien conectado y de que el puerto es ");
+							printf ("el %s.\nPuedes:\nHacer una busqueda automatica, escribir otro puerto o vovler al menu\n", COM_no);
+							COM_no==NULL; //Olvida el puerto que hab√≠a introducido el usuario (que era incorrecto)
 						}
 						else{
 							hay_conexion=1;
