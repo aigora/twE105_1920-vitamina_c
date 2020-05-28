@@ -255,8 +255,7 @@ int main (){
 				fichero = fopen (send_file, "r"); //Abro el fichero en modo de lectura
 				if (fichero==NULL){
 					graf_error ("Ohh! Se ha producido un error en la apertura del fichero. Reinicia el programa y asegurate de introducir bien la ruta de acceso\
-					\n\n\n\n-------------------------------------------------\
-					\nPulsa cualquier tecla + intro para salir");
+					\n\n\n\n-------------------------------------------------");
 					return -1;
 				}
 				else{
@@ -289,7 +288,7 @@ int main (){
 						bloque_no++;
 						printf ("Enviando el bloque no. %i de %i bloque(s)", bloque_no, (longitud_mensaje/90)+1);
 						*(mensaje_salida+(MAX_ENVIO-2))='#';
-						*(mensaje_salida+(MAX_ENVIO-1))='Â·';
+						*(mensaje_salida+(MAX_ENVIO-1))='·';
 						if (!Serial_write(&puertoserie, mensaje_salida)){
 							graf_error ("Se ha producido un error con el envio");
 						}
@@ -300,7 +299,7 @@ int main (){
 				}
 				//Ahora tengo que enviar el bloque que ha quedado al final siguiendo el mismo procedimiento que en el bucle
 				*(mensaje_salida+(MAX_ENVIO-2))='#';
-				*(mensaje_salida+(MAX_ENVIO-1))='Â·';
+				*(mensaje_salida+(MAX_ENVIO-1))='·';
 				printf ("Enviando el ultimo bloque del mensaje");
 				if (!Serial_write(&puertoserie, mensaje_salida)){
 							printf ("Se ha producido un error con el envio");

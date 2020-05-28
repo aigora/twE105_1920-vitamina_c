@@ -152,7 +152,7 @@ void graf_error (char mensaje_de_error[]){
 	printf ("Ohh!\nSe ha producido un error :(\n");
 	printf ("%s\n", g_error);
 	printf ("\n\n%s", mensaje_de_error);
-	printf ("Pulsa cualquier tecla seguida de intro para salir");
+	printf ("\nPulsa cualquier tecla seguida de intro para salir");
 	scanf ("%i");
 }
 
