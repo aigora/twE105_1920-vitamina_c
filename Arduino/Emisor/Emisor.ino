@@ -74,6 +74,7 @@ void recibirbloque (int bloque, char cadena[]){
       cadena[i]=Serial.read(); //Los lee y los guarda en la cadena de texto
       i++;
     }
+    /*
     if (i==SIZE-1&&cadena[SIZE-1]!='·'){
     //Controla que no se exceda el tamaño del array
       Serial.println("Se ha producido un error, excedido el tamaño del array, error en los datos de entrada.");
@@ -86,7 +87,7 @@ void recibirbloque (int bloque, char cadena[]){
           digitalWrite (led_rojo, LOW);
           delay (1000);
       }
-    }
+    }*/
   }  
 }
 
