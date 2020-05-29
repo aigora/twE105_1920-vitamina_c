@@ -272,7 +272,7 @@ int main (){
 				//Durante la espera se mostrarÃ¡ al usuario una barra de progreso. (en realidad representa el tiempo de espera y no el de envio, el envÃ­o es instantÃ¡neo)
 				
 				//Hago una asignaciÃ³n de memoria para hacer hueco al puntero que va a ir almacenando todos los caracteres de cada bloque
-				mensaje_salida = malloc(sizeof(char)*MAX_ENVIO+2);//Dejo dos huecos extra para los signos del final de cada bloque
+				mensaje_salida = malloc(sizeof(char)*MAX_ENVIO);//Dejo dos huecos extra para los signos del final de cada bloque
 				if(mensaje_salida==NULL)
 				{
 					graf_error("Error en la asignacion de memoria");
@@ -288,7 +288,7 @@ int main (){
 						bloque_no++;
 						printf ("Enviando el bloque no. %i de %i bloque(s)", bloque_no, (longitud_mensaje/90)+1);
 						*(mensaje_salida+(MAX_ENVIO-2))='#';
-						*(mensaje_salida+(MAX_ENVIO-1))='·';
+						*(mensaje_salida+(MAX_ENVIO-1))=250;
 						if (!Serial_write(&puertoserie, mensaje_salida)){
 							graf_error ("Se ha producido un error con el envio");
 						}
@@ -299,7 +299,7 @@ int main (){
 				}
 				//Ahora tengo que enviar el bloque que ha quedado al final siguiendo el mismo procedimiento que en el bucle
 				*(mensaje_salida+(MAX_ENVIO-2))='#';
-				*(mensaje_salida+(MAX_ENVIO-1))='·';
+				*(mensaje_salida+(MAX_ENVIO-1))=250;
 				for (cont=cont;cont<MAX_ENVIO;cont++) //Borra el bloque
 					*(mensaje_salida+cont)=NULL;
 				printf ("Enviando el ultimo bloque del mensaje");

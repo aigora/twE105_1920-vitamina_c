@@ -140,10 +140,13 @@ void Serial_end(Serial *link){ //Finaliza la conexión de un puerto abierto. Debe
 _Bool Serial_write (Serial *link, char *mensaje){
 	int i, j, k;
 	int porcentaje [10000];
-	//for (i=0;i<100;i++){
+	char mensaje_out[90];
+	for (i=0;i<90;i++){
 	//	printf ("%c", *(mensaje+i));
-	//}
-	if (!WriteFile(link->handler, (void*) mensaje, TAM_BUFFER, 0, 0)){
+		mensaje_out[i]=*(mensaje+i);
+	}
+	printf ("\n%s\n", mensaje_out);
+	if (!WriteFile(link->handler, (void*) mensaje_out, TAM_BUFFER, 0, 0)){
 		printf ("Error enviando el mensaje.\nDebe reiniciarse la transmision del mensaje.\n");
 		return 0;
 	}
