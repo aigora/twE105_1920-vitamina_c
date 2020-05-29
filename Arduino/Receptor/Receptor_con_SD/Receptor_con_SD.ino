@@ -35,7 +35,9 @@
 //en este programa se descartan los mensajes repetidos. (Es útil cuando la señal no llega muy bien y
 //algunos mensajes no son recibidos
 const boolean dobleenvio = true;
-
+unsigned int i;
+unsigned int bloque;
+unsigned int anteriorbloque=0;
 //char temp [100]; //Vector temporal para los mensajes
 
 void setup() {
@@ -67,9 +69,6 @@ void setup() {
 }
 
 void loop() {
-  unsigned int i;
-  unsigned int bloque;
-  unsigned int anteriorbloque=0;
   String datos = ""; //Creo un String vacío que va a guardar temporalmente los datos recibidos para guardarlos en la SD después
   digitalWrite (led_listo, HIGH);
   uint8_t entrante[VW_MAX_MESSAGE_LEN]; //Guarda mensaje
