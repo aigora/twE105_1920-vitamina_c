@@ -26,6 +26,9 @@
 //en este programa se descartan los mensajes repetidos. (Es útil cuando la señal no llega muy bien y
 //algunos mensajes no son recibidos
 const boolean dobleenvio = true;
+int i;
+int bloque;
+int anteriorbloque=0;
 
 void setup() {
   vw_setup(3000); //Velocidad de transmisión en bps
@@ -36,9 +39,6 @@ void setup() {
 }
 
 void loop() {
-  int i;
-  int bloque;
-  int anteriorbloque=0;
   uint8_t entrante[VW_MAX_MESSAGE_LEN]; //Recibe mensaje
   uint8_t longitud = VW_MAX_MESSAGE_LEN; //Recibe lontigud del mensaje
   if (vw_get_message(entrante, &longitud)){ //Verifica si hay mensaje
