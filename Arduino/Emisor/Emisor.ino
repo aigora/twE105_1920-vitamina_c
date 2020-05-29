@@ -34,7 +34,9 @@
 
 const boolean dobleenvio = true; //True para enviar dos veces el mensaje (activar también en el receptor para descartar mensajes repetidos).
                                  //Es útil cuando algunos mensajes no son recibidos porque no llega bien la señal
-
+ int bloque=1; //Número de bloque que se está enviando - Se añade en el primer hueco de cada array, así se puede comprobar si falta alguno y sirve para identificar
+                    //mensajes repetidos cuando se utiliza doble envío.    
+char cadena[SIZE];
 void setup(){
   Serial.begin(9600);
   digitalWrite (led_verde, OUTPUT); //Configuro los pines de los leds como salidas
@@ -47,10 +49,7 @@ void setup(){
 }
 
 void loop() {
-  //Borra la cadena, recibe un nuevo bloque, cuenta el número de bloque que es, envía el bloque por radio
-  int bloque=1; //Número de bloque que se está enviando - Se añade en el primer hueco de cada array, así se puede comprobar si falta alguno y sirve para identificar
-                    //mensajes repetidos cuando se utiliza doble envío.                    
-  char cadena[SIZE];
+  //Borra la cadena, recibe un nuevo bloque, cuenta el número de bloque que es, envía el bloque por radio               
   borrar(cadena);
   recibirbloque(bloque, cadena);
   bloque++; //Anota que se ha recibido un bloque de datos
